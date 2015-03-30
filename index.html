@@ -184,7 +184,9 @@
 <li>Poll for results</li>
 </ol>
 
-<h2 id="create-batch-method">Create <span class="label label-info">Batch Method</span></h2>
+<h2 id="create">Create</h2>
+
+<p><span class="label label-info">Batch Method</span></p>
 
 <blockquote>
 <p>Creating a batch</p>
@@ -263,7 +265,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="commit-batch-batch-method">Commit Batch <span class="label label-info">Batch Method</span></h2>
+<h2 id="commit-batch">Commit Batch</h2>
+
+<p><span class="label label-info">Batch Method</span></p>
 
 <blockquote>
 <p>Committing a batch</p>
@@ -328,7 +332,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="get-results-batch-method">Get Results <span class="label label-info">Batch Method</span></h2>
+<h2 id="get-results">Get Results</h2>
+
+<p><span class="label label-info">Batch Method</span></p>
 
 <blockquote>
 <p>Getting batch results</p>
@@ -420,7 +426,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="delete-batch-method">Delete <span class="label label-info">Batch Method</span></h2>
+<h2 id="delete">Delete</h2>
+
+<p><span class="label label-info">Batch Method</span></p>
 
 <blockquote>
 <p>Delete a batch</p>
@@ -481,6 +489,8 @@
 </tbody></table>
 
 <h2 id="stop-batch">Stop Batch</h2>
+
+<p><span class="label label-info">Batch Method</span></p>
 <pre><code class="highlight php"><span class="cp">&lt;?php</span>
 <span class="k">use</span> <span class="nx">BrightLocal\Api</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">BrightLocal\Batches\V4</span> <span class="k">as</span> <span class="nx">BatchApi</span><span class="p">;</span>
@@ -536,7 +546,72 @@
 
           <h1 id="rankings">Rankings</h1>
 
-<h2 id="search-batch-method">Search <span class="label label-info">Batch Method</span></h2>
+<h2 id="search">Search</h2>
+
+<p><span class="label label-info">Batch Method</span></p>
+
+<blockquote>
+<p>Fetch rankings</p>
+</blockquote>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="k">use</span> <span class="nx">BrightLocal\Api</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">BrightLocal\Batches\V4</span> <span class="k">as</span> <span class="nx">BatchApi</span><span class="p">;</span>
+
+<span class="nv">$searches</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'search-engine'</span>   <span class="o">=&gt;</span> <span class="s1">'google'</span><span class="p">,</span>
+        <span class="s1">'country'</span>         <span class="o">=&gt;</span> <span class="s1">'USA'</span><span class="p">,</span>
+        <span class="s1">'google-location'</span> <span class="o">=&gt;</span> <span class="s1">'New York, NY'</span><span class="p">,</span>
+        <span class="s1">'search-term'</span>     <span class="o">=&gt;</span> <span class="s1">'restaurant new york'</span><span class="p">,</span>
+        <span class="s1">'urls'</span>            <span class="o">=&gt;</span> <span class="s1">'["le-bernardin.com"]'</span><span class="p">,</span>
+        <span class="s1">'business-names'</span>  <span class="o">=&gt;</span> <span class="s1">'Le Bernardin'</span>
+    <span class="p">),</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'search-engine'</span>   <span class="o">=&gt;</span> <span class="s1">'google'</span><span class="p">,</span>
+        <span class="s1">'country'</span>         <span class="o">=&gt;</span> <span class="s1">'USA'</span><span class="p">,</span>
+        <span class="s1">'google-location'</span> <span class="o">=&gt;</span> <span class="s1">'New York, NY'</span><span class="p">,</span>
+        <span class="s1">'search-term'</span>     <span class="o">=&gt;</span> <span class="s1">'restaurant manhattan'</span><span class="p">,</span>
+        <span class="s1">'urls'</span>            <span class="o">=&gt;</span> <span class="s1">'["le-bernardin.com"]'</span><span class="p">,</span>
+        <span class="s1">'business-names'</span>  <span class="o">=&gt;</span> <span class="s1">'Le Bernardin'</span>
+    <span class="p">),</span>
+    <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'search-engine'</span>   <span class="o">=&gt;</span> <span class="s1">'google'</span><span class="p">,</span>
+        <span class="s1">'country'</span>         <span class="o">=&gt;</span> <span class="s1">'USA'</span><span class="p">,</span>
+        <span class="s1">'google-location'</span> <span class="o">=&gt;</span> <span class="s1">'New York, NY'</span><span class="p">,</span>
+        <span class="s1">'search-term'</span>     <span class="o">=&gt;</span> <span class="s1">'restaurant 10019'</span><span class="p">,</span>
+        <span class="s1">'urls'</span>            <span class="o">=&gt;</span> <span class="s1">'["le-bernardin.com"]'</span><span class="p">,</span>
+        <span class="s1">'business-names'</span>  <span class="o">=&gt;</span> <span class="s1">'Le Bernardin'</span>
+    <span class="p">)</span>
+<span class="p">);</span>
+<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="nx">API_KEY</span><span class="p">,</span> <span class="nx">API_SECRET</span><span class="p">,</span> <span class="nx">API_ENDPOINT</span><span class="p">);</span>
+<span class="nv">$batchApi</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BatchApi</span><span class="p">(</span><span class="nv">$api</span><span class="p">);</span>
+<span class="nv">$batchId</span> <span class="o">=</span> <span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$batchId</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">printf</span><span class="p">(</span><span class="s1">'Created batch ID %d%s'</span><span class="p">,</span> <span class="nv">$batchId</span><span class="p">,</span> <span class="nx">PHP_EOL</span><span class="p">);</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$searches</span> <span class="k">as</span> <span class="nv">$search</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">call</span><span class="p">(</span>
+            <span class="s1">'/v4/rankings/search'</span><span class="p">,</span>
+            <span class="nb">array_merge</span><span class="p">(</span>
+                <span class="nv">$search</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'batch-id'</span> <span class="o">=&gt;</span> <span class="nv">$batchId</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$result</span><span class="p">[</span><span class="s1">'success'</span><span class="p">])</span> <span class="p">{</span>
+            <span class="nb">printf</span><span class="p">(</span><span class="s1">'Added job with ID %d%s'</span><span class="p">,</span> <span class="nv">$result</span><span class="p">[</span><span class="s1">'job-id'</span><span class="p">],</span> <span class="nx">PHP_EOL</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">commit</span><span class="p">(</span><span class="nv">$batchId</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="s1">'Committed batch successfully.'</span><span class="o">.</span><span class="nx">PHP_EOL</span><span class="p">;</span>
+        <span class="c1">// poll for results, in a real world example you might
+</span>        <span class="c1">// want to do this in a separate process (such as via an
+</span>        <span class="c1">// AJAX poll)
+</span>        <span class="k">do</span> <span class="p">{</span>
+            <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">get_results</span><span class="p">(</span><span class="nv">$batchId</span><span class="p">);</span>
+            <span class="nb">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// limit how often you poll
+</span>        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nv">$results</span><span class="p">[</span><span class="s1">'status'</span><span class="p">]</span> <span class="o">!==</span> <span class="s1">'Finished'</span><span class="p">);</span>
+        <span class="nb">print_r</span><span class="p">(</span><span class="nv">$results</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
 
 <blockquote>
 <p>Success (201 Created)</p>
@@ -708,7 +783,9 @@
 
           <h1 id="local-directories">Local Directories</h1>
 
-<h2 id="fetch-profile-url-batch-method">Fetch Profile URL <span class="label label-info">Batch Method</span></h2>
+<h2 id="fetch-profile-url">Fetch Profile URL</h2>
+
+<p><span class="label label-info">Batch Method</span></p>
 
 <blockquote>
 <p>Success (201 Created)</p>
@@ -797,7 +874,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="fetch-profile-details-(by-profile-url)-batch-method">Fetch Profile Details (by profile URL) <span class="label label-info">Batch Method</span></h2>
+<h2 id="fetch-profile-details-(by-profile-url)">Fetch Profile Details (by profile URL)</h2>
+
+<p><span class="label label-info">Batch Method</span></p>
 
 <blockquote>
 <p>Success (201 Created)</p>
@@ -863,7 +942,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="fetch-profile-details-(by-business-data)-batch-method">Fetch Profile Details (by business data) <span class="label label-info">Batch Method</span></h2>
+<h2 id="fetch-profile-details-(by-business-data)">Fetch Profile Details (by business data)</h2>
+
+<p><span class="label label-info">Batch Method</span></p>
 
 <blockquote>
 <p>Success (201 Created)</p>
@@ -954,7 +1035,9 @@
 
           <h1 id="reviews">Reviews</h1>
 
-<h2 id="fetch-reviews-(by-profile-url)-batch-method">Fetch Reviews (by profile URL) <span class="label label-info">Batch Method</span></h2>
+<h2 id="fetch-reviews-(by-profile-url)">Fetch Reviews (by profile URL)</h2>
+
+<p><span class="label label-info">Batch Method</span></p>
 
 <blockquote>
 <p>Fetch reviews for 3 Google+ profile URLs</p>
@@ -1075,7 +1158,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="fetch-reviews-(by-business-data)-batch-method">Fetch Reviews (by business data) <span class="label label-info">Batch Method</span></h2>
+<h2 id="fetch-reviews-(by-business-data)">Fetch Reviews (by business data)</h2>
+
+<p><span class="label label-info">Batch Method</span></p>
 
 <blockquote>
 <p>Fetch reviews for a business using business data</p>
@@ -1223,7 +1308,9 @@
 
           <h1 id="offsite-seo-&amp;-social-profiles">Offsite SEO &amp; Social Profiles</h1>
 
-<h2 id="offsite-seo-batch-method">Offsite SEO <span class="label label-info">Batch Method</span></h2>
+<h2 id="offsite-seo">Offsite SEO</h2>
+
+<p><span class="label label-info">Batch Method</span></p>
 
 <blockquote>
 <p>Fetch offsite SEO information for a website address</p>
@@ -1320,7 +1407,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="social-profiles-batch-method">Social Profiles <span class="label label-info">Batch Method</span></h2>
+<h2 id="social-profiles">Social Profiles</h2>
+
+<p><span class="label label-info">Batch Method</span></p>
 
 <blockquote>
 <p>Fetch details of the social profiles a business has</p>
@@ -1477,7 +1566,9 @@
 
           <h1 id="clients">Clients</h1>
 
-<h2 id="add-client-account-method">Add Client <span class="label label-info">Account Method</span></h2>
+<h2 id="add-client">Add Client</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -1602,7 +1693,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="update-client-account-method">Update Client <span class="label label-info">Account Method</span></h2>
+<h2 id="update-client">Update Client</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <p>Update an existing client. Only supply values you want to update. The rest will be left unchanged.</p>
 
@@ -1730,7 +1823,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="delete-client-account-method">Delete Client <span class="label label-info">Account Method</span></h2>
+<h2 id="delete-client">Delete Client</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -1774,7 +1869,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="get-all-clients-account-method">Get All Clients <span class="label label-info">Account Method</span></h2>
+<h2 id="get-all-clients">Get All Clients</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -1839,7 +1936,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="get-client-account-method">Get Client <span class="label label-info">Account Method</span></h2>
+<h2 id="get-client">Get Client</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -1924,7 +2023,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="search-clients-account-method">Search Clients <span class="label label-info">Account Method</span></h2>
+<h2 id="search-clients">Search Clients</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -1995,7 +2096,9 @@
 
           <h1 id="local-search-rank-checker">Local Search Rank Checker</h1>
 
-<h2 id="add-report-account-method">Add Report <span class="label label-info">Account Method</span></h2>
+<h2 id="add-report">Add Report</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -2123,7 +2226,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="update-report-account-method">Update Report <span class="label label-info">Account Method</span></h2>
+<h2 id="update-report">Update Report</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -2256,7 +2361,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="delete-report-account-method">Delete Report <span class="label label-info">Account Method</span></h2>
+<h2 id="delete-report">Delete Report</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -2300,7 +2407,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="get-all-reports-account-method">Get All Reports <span class="label label-info">Account Method</span></h2>
+<h2 id="get-all-reports">Get All Reports</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -2366,7 +2475,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="get-report-account-method">Get Report <span class="label label-info">Account Method</span></h2>
+<h2 id="get-report">Get Report</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -2480,7 +2591,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="run-report-account-method">Run Report <span class="label label-info">Account Method</span></h2>
+<h2 id="run-report">Run Report</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -2526,7 +2639,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="get-report-history-account-method">Get Report History <span class="label label-info">Account Method</span></h2>
+<h2 id="get-report-history">Get Report History</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -2589,7 +2704,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="get-report-results-account-method">Get Report Results <span class="label label-info">Account Method</span></h2>
+<h2 id="get-report-results">Get Report Results</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <p>If no campaign history ID or previous campaign history ID are passed then the latest results for the specified report are returned.</p>
 
@@ -2637,7 +2754,9 @@
 
           <h1 id="local-seo-check-up">Local SEO Check-up</h1>
 
-<h2 id="add-report-account-method">Add Report <span class="label label-info">Account Method</span></h2>
+<h2 id="add-report">Add Report</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Supplying Local Directory URLs (see local-directory-urls parameter)</p>
@@ -2819,7 +2938,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="update-report-account-method">Update Report <span class="label label-info">Account Method</span></h2>
+<h2 id="update-report">Update Report</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Supplying Local Directory URLs (see local-directory-urls parameter)</p>
@@ -2997,7 +3118,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="get-report-account-method">Get Report <span class="label label-info">Account Method</span></h2>
+<h2 id="get-report">Get Report</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -3090,7 +3213,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="run-report-account-method">Run Report <span class="label label-info">Account Method</span></h2>
+<h2 id="run-report">Run Report</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -3153,7 +3278,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="delete-report-account-method">Delete Report <span class="label label-info">Account Method</span></h2>
+<h2 id="delete-report">Delete Report</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -3215,7 +3342,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="search-account-method">Search <span class="label label-info">Account Method</span></h2>
+<h2 id="search">Search</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -3289,6 +3418,8 @@
           <h1 id="citation-tracker">Citation Tracker</h1>
 
 <h2 id="add-report">Add Report</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -3408,6 +3539,8 @@
 </tbody></table>
 
 <h2 id="update-report">Update Report</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -3531,6 +3664,8 @@
 
 <h2 id="run-report">Run Report</h2>
 
+<p><span class="label label-info">Account Method</span></p>
+
 <blockquote>
 <p>Success (200 OK)</p>
 </blockquote>
@@ -3572,6 +3707,8 @@
 </tbody></table>
 
 <h2 id="delete-report">Delete Report</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -3616,6 +3753,8 @@
 </tbody></table>
 
 <h2 id="get-all-reports">Get All Reports</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -3749,6 +3888,8 @@
 
 <h2 id="get-report-results">Get Report Results</h2>
 
+<p><span class="label label-info">Account Method</span></p>
+
 <blockquote>
 <p>Success (200 OK)</p>
 </blockquote>
@@ -3856,7 +3997,9 @@
 
           <h1 id="citation-burst">Citation Burst</h1>
 
-<h2 id="create-campaign-account-method">Create Campaign <span class="label label-info">Account Method</span></h2>
+<h2 id="create-campaign">Create Campaign</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Validation Failure</p>
@@ -4121,7 +4264,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="upload-image-account-method">Upload Image <span class="label label-info">Account Method</span></h2>
+<h2 id="upload-image">Upload Image</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -4164,7 +4309,9 @@
 
 <p>http://tools.brightlocal.com/seo-tools/api/v2/cb/upload/5533/logo</p>
 
-<h2 id="get-citations-account-method">Get Citations <span class="label label-info">Account Method</span></h2>
+<h2 id="get-citations">Get Citations</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -4220,7 +4367,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="confirm-&amp;-pay-account-method">Confirm &amp; Pay <span class="label label-info">Account Method</span></h2>
+<h2 id="confirm-&amp;-pay">Confirm &amp; Pay</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -4278,7 +4427,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="get-campaigns-account-method">Get Campaigns <span class="label label-info">Account Method</span></h2>
+<h2 id="get-campaigns">Get Campaigns</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -4349,7 +4500,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="get-campaign-account-method">Get Campaign <span class="label label-info">Account Method</span></h2>
+<h2 id="get-campaign">Get Campaign</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -4429,7 +4582,9 @@
 
           <h1 id="reviewflow-reports">ReviewFlow Reports</h1>
 
-<h2 id="add-report-account-method">Add Report <span class="label label-info">Account Method</span></h2>
+<h2 id="add-report">Add Report</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Example of specifying directories</p>
@@ -4570,7 +4725,9 @@
     Once added a report won&rsquo;t show in your control panel until all profile URLs have been found (the first stage of running the report). Once this is complete and reviews are being fetched the report will be shown.
 </aside>
 
-<h2 id="update-report-account-method">Update Report <span class="label label-info">Account Method</span></h2>
+<h2 id="update-report">Update Report</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Example of modifying directories</p>
@@ -4657,7 +4814,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="get-report-account-method">Get Report <span class="label label-info">Account Method</span></h2>
+<h2 id="get-report">Get Report</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -4821,7 +4980,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="delete-report-account-method">Delete Report <span class="label label-info">Account Method</span></h2>
+<h2 id="delete-report">Delete Report</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -4879,7 +5040,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="get-reports-account-method">Get Reports <span class="label label-info">Account Method</span></h2>
+<h2 id="get-reports">Get Reports</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -4969,7 +5132,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="report-search-account-method">Report Search <span class="label label-info">Account Method</span></h2>
+<h2 id="report-search">Report Search</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -5035,7 +5200,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="get-reviews-account-method">Get Reviews <span class="label label-info">Account Method</span></h2>
+<h2 id="get-reviews">Get Reviews</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -5183,7 +5350,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="get-reviews-count-account-method">Get Reviews Count <span class="label label-info">Account Method</span></h2>
+<h2 id="get-reviews-count">Get Reviews Count</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -5231,7 +5400,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="get-growth-account-method">Get Growth <span class="label label-info">Account Method</span></h2>
+<h2 id="get-growth">Get Growth</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <p>Get count and percentage of new reviews since last report run.</p>
 
@@ -5284,7 +5455,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="get-directories-account-method">Get Directories <span class="label label-info">Account Method</span></h2>
+<h2 id="get-directories">Get Directories</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -5447,7 +5620,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="get-directory-stats-account-method">Get Directory Stats <span class="label label-info">Account Method</span></h2>
+<h2 id="get-directory-stats">Get Directory Stats</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <p>Fetch stats showing average rating and review count for every directory in a given report.</p>
 
@@ -5527,7 +5702,9 @@
 </tr>
 </tbody></table>
 
-<h2 id="get-star-counts-account-method">Get Star Counts <span class="label label-info">Account Method</span></h2>
+<h2 id="get-star-counts">Get Star Counts</h2>
+
+<p><span class="label label-info">Account Method</span></p>
 
 <blockquote>
 <p>Success (200 OK)</p>
@@ -5592,7 +5769,1271 @@
 
 <h2 id="supported-local-directories">Supported Local Directories</h2>
 
-<p>The following tables provide details of the local directories we support for looking up profile URLs, profile details and/or reviews by country.</p>
+<p>The following tables provide details of the local directories we support for looking up profile URLs, profile details and/or reviews by country. For some directories we support all information. For others only partial.</p>
+
+<h3 id="united-states-(usa)">United States (USA)</h3>
+
+<table><thead>
+<tr>
+<th>Identifier</th>
+<th>NAP</th>
+<th>Reviews</th>
+<th>URL</th>
+<th>Other</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>acxiom</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>allpages</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>angies</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>b2byellowpages</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bbb</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>brownbook</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>botw</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>chamberofcommerce</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>citysearch</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>citysquares</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cmac</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cortera</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dexknows</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>doctoroogle</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>expressupdate</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>facebook</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>factual</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>favecentral</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>foursquare</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>google</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>healthgrades</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>hotfrog</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>insiderpages</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>ibegin</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>judysbook</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>justdeal</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Incorrectly named - corresponds to JustDial</td>
+</tr>
+<tr>
+<td>kudzu</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>localcom</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>magicyellow</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>manta</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mapquest</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>merchantcircle</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>mojopages</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>neustarlocaleze</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>PowerProfiles</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>realself</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>salesspider</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>showmelocal</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>superpages</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>switchboard</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>theusaexplorer</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>whitepages</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yahoo</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>yasabe</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>YellowBook</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yellowbot</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>Yellowee</td>
+<td></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yellowpagecity</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yellowpages</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>yelp</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>ziplocal</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>zocdoc</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h3 id="great-britain-(gbr)">Great Britain (GBR)</h3>
+
+<table><thead>
+<tr>
+<th>Identifier</th>
+<th>NAP</th>
+<th>Reviews</th>
+<th>URL</th>
+<th>Other</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>192</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bizwiki</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>brownbook</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>businessclassified</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CityVisitor</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cylex</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>facebook</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>factual</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>foursquare</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>freeindex</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>fyple</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>google</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>hotfrog</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>independent</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>localdatasearch</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>localmole</td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>near</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>manta</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>misterwhat</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mylocalservices</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>qype</td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>scoot</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>thediscdirectory</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>thesun</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>thomsonlocal</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>tipped</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>touchlocal</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>uk-local-search</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ukplaces</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>wheresbest</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yahoo</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>yalwa</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yell</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>yelp</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h3 id="australia-(aus)">Australia (AUS)</h3>
+
+<table><thead>
+<tr>
+<th>Identifier</th>
+<th>NAP</th>
+<th>Reviews</th>
+<th>URL</th>
+<th>Other</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>aubiz</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>aussieweb</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>australiabusinesslisting</td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>australianguide</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>australianplanet</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>bloo</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>brownbookaus</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>businesscomau</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cylexaus</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>dlook</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>eatability</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>facebook</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>foursquare</td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>fyple</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>google</td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>hotfrogaus</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>localstore</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>localbd</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>localbusinessguide</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>localcomau</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>nationaldirectory</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>nearyouau</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>manta</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>reverseaustralia</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>startlocal</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>superpagesaus</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>streetdirectory</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tuugo</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>truelocal</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>vicdir</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>whereis</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>whitepagesaus</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>womo</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>wowcity</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yalwa</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yellowbook</td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>yellowpagesaus</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>yelp-aus</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h3 id="canada-(can)">Canada (CAN)</h3>
+
+<table><thead>
+<tr>
+<th>Identifier</th>
+<th>NAP</th>
+<th>Reviews</th>
+<th>URL</th>
+<th>Other</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>c411</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>allpages</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>brownbook</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>canpages</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>cdnpages</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cylexcan</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>directorycentral</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>facebook</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>factual</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>foursquare</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>goldbook</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>google</td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>hotfrogcan</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>ibegin</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>nearyouca</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>manta</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>pagesjaunes</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>profilecanada</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>salespider</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>superpages</td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>weblocal</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>wikidomo</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yalwa</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>yellowpagesca</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>yelp-can</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>ziplocal</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>zoominfo</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 
 <h2 id="business-category-ids">Business Category IDs</h2>
 
