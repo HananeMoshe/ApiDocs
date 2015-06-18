@@ -612,7 +612,7 @@
 </span>        <span class="k">do</span> <span class="p">{</span>
             <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">get_results</span><span class="p">(</span><span class="nv">$batchId</span><span class="p">);</span>
             <span class="nb">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// limit how often you poll
-</span>        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nv">$results</span><span class="p">[</span><span class="s1">'status'</span><span class="p">]</span> <span class="o">!==</span> <span class="s1">'Finished'</span><span class="p">);</span>
+</span>        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="nb">in_array</span><span class="p">(</span><span class="nv">$results</span><span class="p">[</span><span class="s1">'status'</span><span class="p">],</span> <span class="k">array</span><span class="p">(</span><span class="s1">'Stopped'</span><span class="p">,</span> <span class="s1">'Finished'</span><span class="p">)));</span>
         <span class="nb">print_r</span><span class="p">(</span><span class="nv">$results</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -1079,7 +1079,7 @@
 </span>        <span class="k">do</span> <span class="p">{</span>
             <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">get_results</span><span class="p">(</span><span class="nv">$batchId</span><span class="p">);</span>
             <span class="nb">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// limit how often you poll
-</span>        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nv">$results</span><span class="p">[</span><span class="s1">'status'</span><span class="p">]</span> <span class="o">!==</span> <span class="s1">'Finished'</span><span class="p">);</span>
+</span>        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="nb">in_array</span><span class="p">(</span><span class="nv">$results</span><span class="p">[</span><span class="s1">'status'</span><span class="p">],</span> <span class="k">array</span><span class="p">(</span><span class="s1">'Stopped'</span><span class="p">,</span> <span class="s1">'Finished'</span><span class="p">)));</span>
         <span class="nb">print_r</span><span class="p">(</span><span class="nv">$results</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -1202,7 +1202,7 @@
 </span>        <span class="k">do</span> <span class="p">{</span>
             <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">get_results</span><span class="p">(</span><span class="nv">$batchId</span><span class="p">);</span>
             <span class="nb">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// limit how often you poll
-</span>        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nv">$results</span><span class="p">[</span><span class="s1">'status'</span><span class="p">]</span> <span class="o">!==</span> <span class="s1">'Finished'</span><span class="p">);</span>
+</span>        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="nb">in_array</span><span class="p">(</span><span class="nv">$results</span><span class="p">[</span><span class="s1">'status'</span><span class="p">],</span> <span class="k">array</span><span class="p">(</span><span class="s1">'Stopped'</span><span class="p">,</span> <span class="s1">'Finished'</span><span class="p">)));</span>
         <span class="nb">print_r</span><span class="p">(</span><span class="nv">$results</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -1346,7 +1346,7 @@
 </span>        <span class="k">do</span> <span class="p">{</span>
             <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">get_results</span><span class="p">(</span><span class="nv">$batchId</span><span class="p">);</span>
             <span class="nb">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// limit how often you poll
-</span>        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nv">$results</span><span class="p">[</span><span class="s1">'status'</span><span class="p">]</span> <span class="o">!==</span> <span class="s1">'Finished'</span><span class="p">);</span>
+</span>        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="nb">in_array</span><span class="p">(</span><span class="nv">$results</span><span class="p">[</span><span class="s1">'status'</span><span class="p">],</span> <span class="k">array</span><span class="p">(</span><span class="s1">'Stopped'</span><span class="p">,</span> <span class="s1">'Finished'</span><span class="p">)));</span>
         <span class="nb">print_r</span><span class="p">(</span><span class="nv">$results</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -1455,7 +1455,7 @@
 </span>        <span class="k">do</span> <span class="p">{</span>
             <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">get_results</span><span class="p">(</span><span class="nv">$batchId</span><span class="p">);</span>
             <span class="nb">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// limit how often you poll
-</span>        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nv">$results</span><span class="p">[</span><span class="s1">'status'</span><span class="p">]</span> <span class="o">!==</span> <span class="s1">'Finished'</span><span class="p">);</span>
+</span>        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="nb">in_array</span><span class="p">(</span><span class="nv">$results</span><span class="p">[</span><span class="s1">'status'</span><span class="p">],</span> <span class="k">array</span><span class="p">(</span><span class="s1">'Stopped'</span><span class="p">,</span> <span class="s1">'Finished'</span><span class="p">)));</span>
         <span class="nb">print_r</span><span class="p">(</span><span class="nv">$results</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
