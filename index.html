@@ -5766,6 +5766,145 @@
 </tr>
 </tbody></table>
 
+          <h1 id="google+-local-wizard-reports">Google+ Local Wizard Reports</h1>
+
+<h2 id="get-all-reports">Get All Reports</h2>
+
+<p><span class="label label-info">Account Method</span></p>
+
+<blockquote>
+<p>Success (200 OK)</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"response"</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"results"</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"report_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"49"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"report_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test 1"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Weekly"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_running"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yes"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"running_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Identifying your top Google+ Local competitors"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"report_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"report_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test 2"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monthly"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_running"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"running_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Validation Failure (400 Bad Request)</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"INVALID_CLIENT_ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid client ID supplied"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns basic details about all reports associated with your account.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://tools.brightlocal.com/seo-tools/api/v4/gpw/all</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api-key</td>
+<td><span class="label label-required">Required</span></td>
+</tr>
+<tr>
+<td>sig</td>
+<td><span class="label label-required">Required</span> <a href="#authentication">See above for how to generate signature and expires values.</a></td>
+</tr>
+<tr>
+<td>expires</td>
+<td><span class="label label-required">Required</span> <a href="#authentication">See above for how to generate signature and expires values.</a></td>
+</tr>
+<tr>
+<td>client-id</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h2 id="run-report">Run Report</h2>
+
+<p><span class="label label-info">Account Method</span></p>
+
+<blockquote>
+<p>Success (200 OK)</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Validation Failure (400 Bad Request)</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"INVALID_REPORT_ID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Report ID missing"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"NO_CREDITS"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"You don't have any credits left"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failure when report already running (400 Bad Request)</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"REPORT_RUNNING"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Report is already running"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT https://tools.brightlocal.com/seo-tools/api/v4/gpw/run</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api-key</td>
+<td><span class="label label-required">Required</span></td>
+</tr>
+<tr>
+<td>sig</td>
+<td><span class="label label-required">Required</span> <a href="#authentication">See above for how to generate signature and expires values.</a></td>
+</tr>
+<tr>
+<td>expires</td>
+<td><span class="label label-required">Required</span> <a href="#authentication">See above for how to generate signature and expires values.</a></td>
+</tr>
+<tr>
+<td>report-id</td>
+<td><span class="label label-required">Required</span> The unique ID for the report in your account.</td>
+</tr>
+</tbody></table>
+
           <h1 id="useful-tools">Useful Tools</h1>
 
 <p>Apigee produces a <a href="https://apigee.com/console/others">free API testing tool</a> which may help you to interactively query our API.</p>
