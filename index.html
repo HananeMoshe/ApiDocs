@@ -5768,6 +5768,420 @@
 
           <h1 id="google+-local-wizard-reports">Google+ Local Wizard Reports</h1>
 
+<h2 id="add-report">Add Report</h2>
+
+<p><span class="label label-info">Account Method</span></p>
+
+<blockquote>
+<p>Success (201 Created)</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"report-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Validation Failure (400 Bad Request)</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"run"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You don\'t have any credits left"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"business_names"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please enter one business name"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"report_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Report type is not available"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please enter a telephone number"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please enter a postcode"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please enter an address"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please enter a city"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"search_terms"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please enter at least one search term"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please choose country from the list"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"report_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please enter a report name"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"google_location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The location was not recognized. Please enter a correct location"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please select schedule"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"white_label_profile_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Such White Label Profile doesn't exists"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Adds a new Google+ Local Wizard report to your account.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://tools.brightlocal.com/seo-tools/api/v4/gpw/add</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api-key</td>
+<td><span class="label label-required">Required</span></td>
+</tr>
+<tr>
+<td>sig</td>
+<td><span class="label label-required">Required</span> <a href="#authentication">See above for how to generate signature and expires values.</a></td>
+</tr>
+<tr>
+<td>expires</td>
+<td><span class="label label-required">Required</span> <a href="#authentication">See above for how to generate signature and expires values.</a></td>
+</tr>
+<tr>
+<td>report_name</td>
+<td><span class="label label-required">Required</span></td>
+</tr>
+<tr>
+<td>client_id</td>
+<td>Associate this report with a client in your account. This ID needs to correspond to a valid client in your account.</td>
+</tr>
+<tr>
+<td>white_label_profile_id</td>
+<td>Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.</td>
+</tr>
+<tr>
+<td>business_names</td>
+<td><span class="label label-required">Required</span> Supply one business name. For example, Greens Restaurant.</td>
+</tr>
+<tr>
+<td>schedule</td>
+<td><span class="label label-required">Required</span> One of Adhoc or Monthly</td>
+</tr>
+<tr>
+<td>day_of_month</td>
+<td><span class="label label-required">Required</span> One of 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, -1 (last day of month).</td>
+</tr>
+<tr>
+<td>report_type</td>
+<td><span class="label label-required">Required</span> One of with or without. &lsquo;with&rsquo; - the business has a Google+ profile. &#39;without&rsquo; - Ignore this business, just display competitor information. Defaults to with.</td>
+</tr>
+<tr>
+<td>address1</td>
+<td><span class="label label-required">Required</span> Optional for report_type=without</td>
+</tr>
+<tr>
+<td>address2</td>
+<td></td>
+</tr>
+<tr>
+<td>profile_url</td>
+<td></td>
+</tr>
+<tr>
+<td>city</td>
+<td><span class="label label-required">Required</span> Optional for report_type=without</td>
+</tr>
+<tr>
+<td>state_code</td>
+<td><span class="label label-required">Required</span> (USA, CAN:EN and AUS)</td>
+</tr>
+<tr>
+<td>postcode</td>
+<td><span class="label label-required">Required</span> A valid postcode or ZIP. Optional for report_type=without</td>
+</tr>
+<tr>
+<td>phone_number</td>
+<td><span class="label label-required">Required</span> Optional for report_type=without</td>
+</tr>
+<tr>
+<td>country</td>
+<td><span class="label label-required">Required</span> One of USA, CAN:EN, GBR or AUS.</td>
+</tr>
+<tr>
+<td>search_terms</td>
+<td><span class="label label-required">Required</span> Supply one or more search terms (max 5) as a JSON string. For example, [&ldquo;restaurant san francisco&rdquo;,&ldquo;cafe san francisco&rdquo;].</td>
+</tr>
+<tr>
+<td>notify</td>
+<td>One of Yes or No. If set to yes we will send report alerts to all email addresses specified (see field below). If you include customer email addresses when setting up your report we&rsquo;ll also email them the alerts so please be sure this is what you want before adding their addresses. Default is No.</td>
+</tr>
+<tr>
+<td>email_addresses</td>
+<td>Supply one or more (max 5) email addresses for us to send report alerts to. This only takes effect if notify is set to Yes. JSON string. For example, [&ldquo;email1@test.com&rdquo;,&ldquo;email2@test.com&rdquo;].</td>
+</tr>
+<tr>
+<td>google_location</td>
+<td>A valid google search location. Please refer to our location check method.</td>
+</tr>
+<tr>
+<td>is_public</td>
+<td>Determines whether or not to make the report available on a public URL you can give to your customers. One of Yes or No. Defaults to No.</td>
+</tr>
+<tr>
+<td>run</td>
+<td>One of Yes or No. Runs the report after adding. Defaults to Yes.</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-report">Update Report</h2>
+
+<p><span class="label label-info">Account Method</span></p>
+
+<blockquote>
+<p>Success (200 OK)</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Validation Failure (400 Bad Request)</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"INVALID_REPORT_ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Report ID invalid"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT https://tools.brightlocal.com/seo-tools/api/v4/gpw/[reportId]</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api-key</td>
+<td><span class="label label-required">Required</span></td>
+</tr>
+<tr>
+<td>sig</td>
+<td><span class="label label-required">Required</span> <a href="#authentication">See above for how to generate signature and expires values.</a></td>
+</tr>
+<tr>
+<td>expires</td>
+<td><span class="label label-required">Required</span> <a href="#authentication">See above for how to generate signature and expires values.</a></td>
+</tr>
+<tr>
+<td>report_name</td>
+<td></td>
+</tr>
+<tr>
+<td>client_id</td>
+<td>Associate this report with a client in your account. This ID needs to correspond to a valid client in your account.</td>
+</tr>
+<tr>
+<td>white_label_profile_id</td>
+<td>Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.</td>
+</tr>
+<tr>
+<td>business_names</td>
+<td>Supply one business name. For example, Greens Restaurant.</td>
+</tr>
+<tr>
+<td>schedule</td>
+<td>One of Adhoc or Monthly</td>
+</tr>
+<tr>
+<td>day_of_month</td>
+<td>One of 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, -1 (last day of month).</td>
+</tr>
+<tr>
+<td>report_type</td>
+<td>One of with or without. &#39;with&rsquo; - the business has a Google+ profile. &#39;without&rsquo; - Ignore this business, just display competitor information. Defaults to with.</td>
+</tr>
+<tr>
+<td>address1</td>
+<td></td>
+</tr>
+<tr>
+<td>address2</td>
+<td></td>
+</tr>
+<tr>
+<td>profile_url</td>
+<td></td>
+</tr>
+<tr>
+<td>city</td>
+<td></td>
+</tr>
+<tr>
+<td>state_code</td>
+<td>(USA, CAN:EN and AUS)</td>
+</tr>
+<tr>
+<td>postcode</td>
+<td>A valid postcode or ZIP.</td>
+</tr>
+<tr>
+<td>phone_number</td>
+<td></td>
+</tr>
+<tr>
+<td>country</td>
+<td>One of USA, CAN:EN, GBR or AUS.</td>
+</tr>
+<tr>
+<td>search_terms</td>
+<td>Supply one or more search terms (max 5) as a JSON string. For example, [&ldquo;restaurant san francisco&rdquo;,&ldquo;cafe san francisco&rdquo;].</td>
+</tr>
+<tr>
+<td>notify</td>
+<td>One of Yes or No. If set to yes we will send report alerts to all email addresses specified (see field below). If you include customer email addresses when setting up your report we&rsquo;ll also email them the alerts so please be sure this is what you want before adding their addresses. Default is No.</td>
+</tr>
+<tr>
+<td>email_addresses</td>
+<td>Supply one or more (max 5) email addresses for us to send report alerts to. This only takes effect if notify is set to Yes. JSON string. For example, [&ldquo;email1@test.com&rdquo;,&ldquo;email2@test.com&rdquo;].</td>
+</tr>
+<tr>
+<td>google_location</td>
+<td>A valid google search location. Please refer to our location check method.</td>
+</tr>
+<tr>
+<td>is_public</td>
+<td>Determines whether or not to make the report available on a public URL you can give to your customers. One of Yes or No. Defaults to No.</td>
+</tr>
+<tr>
+<td>run</td>
+<td>One of Yes or No. Runs the report after adding. Defaults to Yes.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-report">Get Report</h2>
+
+<p><span class="label label-info">Account Method</span></p>
+
+<blockquote>
+<p>Success (200 OK)</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"report"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"report_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"report_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Report name"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adhoc"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"day_of_month"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"white_label_profile_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"report_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"without"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"business_names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="s2">"Business name1"</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90210"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"state_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IL"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@test.com"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"address2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chicago, IL"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"telephone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"search_terms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="s2">"search_term1"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"search_term2"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"search_term3"</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="s2">"google_location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chicago, IL"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"notify"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"email_addresses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="s2">"email@company.com"</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="s2">"last_run_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"626"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"is_public"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yes"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"public_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9e4356696cadcbc1c3ed87cc8103d4be5d09f04c"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Enabled"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Validation Failure (400 Bad Request)</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"INVALID_REPORT_ID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Report ID invalid"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://tools.brightlocal.com/seo-tools/api/v4/gpw/[reportId]</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api-key</td>
+<td><span class="label label-required">Required</span></td>
+</tr>
+<tr>
+<td>sig</td>
+<td><span class="label label-required">Required</span> <a href="#authentication">See above for how to generate signature and expires values.</a></td>
+</tr>
+<tr>
+<td>expires</td>
+<td><span class="label label-required">Required</span> <a href="#authentication">See above for how to generate signature and expires values.</a></td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-report">Delete Report</h2>
+
+<p><span class="label label-info">Account Method</span></p>
+
+<blockquote>
+<p>Success (200 OK)</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Validation Failure (400 Bad Request)</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"INVALID_REPORT_ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Report ID invalid"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE https://tools.brightlocal.com/seo-tools/api/v4/gpw/[reportId]</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api-key</td>
+<td><span class="label label-required">Required</span></td>
+</tr>
+<tr>
+<td>sig</td>
+<td><span class="label label-required">Required</span> <a href="#authentication">See above for how to generate signature and expires values.</a></td>
+</tr>
+<tr>
+<td>expires</td>
+<td><span class="label label-required">Required</span> <a href="#authentication">See above for how to generate signature and expires values.</a></td>
+</tr>
+</tbody></table>
+
 <h2 id="get-all-reports">Get All Reports</h2>
 
 <p><span class="label label-info">Account Method</span></p>
@@ -5812,7 +6226,7 @@
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://tools.brightlocal.com/seo-tools/api/v4/gpw/all</code></p>
+<p><code class="prettyprint">GET https://tools.brightlocal.com/seo-tools/api/v4/gpw</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
