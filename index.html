@@ -788,9 +788,7 @@
 
           <h1 id="local-directories">Local Directories</h1>
 
-<h2 id="fetch-profile-url">Fetch Profile URL</h2>
-
-<p><span class="label label-info">Batch Method</span></p>
+<h2 id="fetch-profile-url-(batch-method)">Fetch Profile URL (Batch Method)</h2>
 
 <blockquote>
 <p>Success (201 Created)</p>
@@ -876,6 +874,82 @@
 <tr>
 <td>street-address</td>
 <td></td>
+</tr>
+</tbody></table>
+
+<h2 id="fetch-profile-url-(telephone-number-only)">Fetch Profile URL (Telephone Number Only)</h2>
+
+<blockquote>
+<p>Success (201 Created)</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"job-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">318</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failure (400 Bad Request)</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+ </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+   </span><span class="s2">"INVALID_TELEPHONE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid telephone specified"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"INVALID_LOCAL_DIRECTORY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid local directory  specified"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failure (405 Method Not Allowed)</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"INVALID_METHOD"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid method specified. Only POST method is available"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Authentication for this method is via API key only.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://tools.brightlocal.com/seo-tools/api/v4/ld/fetch-profile-url</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api-key</td>
+<td></td>
+<td><span class="label label-required">Required</span></td>
+</tr>
+<tr>
+<td>batch-id</td>
+<td></td>
+<td><span class="label label-required">Required</span></td>
+</tr>
+<tr>
+<td>local-directory</td>
+<td></td>
+<td><span class="label label-required">Required</span> See possible options in appendix below.</td>
+</tr>
+<tr>
+<td>telephone</td>
+<td></td>
+<td><span class="label label-required">Required</span></td>
+</tr>
+<tr>
+<td>search-type</td>
+<td>search-by-phone</td>
+<td><span class="label label-required">Required</span></td>
 </tr>
 </tbody></table>
 
@@ -4468,11 +4542,11 @@
                         </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt; 10/100"</span><span class="p">,</span><span class="w">
                         </span><span class="s2">"citation_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"High"</span><span class="w">
                     </span><span class="p">}</span><span class="w">
-                </span><span class="err">}</span><span class="w">
-            </span><span class="err">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span><span class="err">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -6932,7 +7006,17 @@
 
 <h2 id="supported-local-directories">Supported Local Directories</h2>
 
-<p>The following tables provide details of the local directories we support for looking up profile URLs, profile details and/or reviews by country. For some directories we support all information. For others only partial.</p>
+<p>The following tables provide details of the local directories we support for looking up profile URLs, profile details and/or reviews. For some directories we are able to grab all informatio and for others only partial information due to restrictions on certain sites or due to complications in the data gathering process (e.g. site uses JS to mask certain data points or doesn&rsquo;t present listing on separate, distinct URLs)</p>
+
+<h3 id="key-to-table:">Key to table:</h3>
+
+<ul>
+<li>Indentifier = name of directory to be used when querying data for a specific directory</li>
+<li>NAP = we are able to retrieve Business Name, Address, Phone Number from a directory (some sites provide address in component parts, some as single data string)</li>
+<li>Reviews = we grab review content, star rating + review count from a directory</li>
+<li>Find Profile URL = we are able to return a URL on directory for this business</li>
+<li>Website URL = we are able to retrieve website URL from a directory (if it is present) </li>
+</ul>
 
 <h3 id="united-states-(usa)">United States (USA)</h3>
 
@@ -6951,7 +7035,7 @@
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td><span class="yes">Yes</span></td>
-<td><span class="yes">Yes</span></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -6959,14 +7043,14 @@
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
-<td><span class="yes">Yes</span></td>
 <td></td>
+<td>Doesn&rsquo;t display listings on individual pages</td>
 </tr>
 <tr>
 <td>allpages</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
@@ -6974,7 +7058,7 @@
 <td>angies</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
@@ -6982,7 +7066,7 @@
 <td>b2byellowpages</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
@@ -6990,15 +7074,7 @@
 <td>bbb</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-</tr>
-<tr>
-<td>brownbook</td>
-<td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
@@ -7011,10 +7087,18 @@
 <td></td>
 </tr>
 <tr>
+<td>brownbook</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
 <td>chamberofcommerce</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
@@ -7023,22 +7107,22 @@
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
-<td><span class="yes">Yes</span></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>citysquares</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>cmac</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
@@ -7046,7 +7130,15 @@
 <td>cortera</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
+</tr>
+<tr>
+<td>cylex</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
@@ -7063,22 +7155,22 @@
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td><span class="yes">Yes</span></td>
-<td><span class="yes">Yes</span></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>expressupdate</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>facebook</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
@@ -7086,7 +7178,7 @@
 <td>factual</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
@@ -7094,14 +7186,14 @@
 <td>favecentral</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>find-us-here</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -7127,13 +7219,21 @@
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td><span class="yes">Yes</span></td>
-<td><span class="yes">Yes</span></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>hotfrog</td>
 <td><span class="yes">Yes</span></td>
+<td></td>
 <td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>ibegin</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -7143,15 +7243,7 @@
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
-<td><span class="yes">Yes</span></td>
 <td></td>
-</tr>
-<tr>
-<td>ibegin</td>
-<td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
-<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
@@ -7159,14 +7251,14 @@
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
-<td><span class="yes">Yes</span></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>justdeal</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td>Incorrectly named - corresponds to JustDial</td>
 </tr>
@@ -7190,7 +7282,7 @@
 <td>magicyellow</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
@@ -7200,13 +7292,13 @@
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td>Currently causing issues in grabbing profile details</td>
 </tr>
 <tr>
 <td>mapquest</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
@@ -7222,7 +7314,7 @@
 <td>mojopages</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
 </tr>
@@ -7230,15 +7322,23 @@
 <td>neustarlocaleze</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
+<td></td>
+</tr>
+<tr>
+<td>opentable</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
-<td>PowerProfiles</td>
+<td>powerprofiles</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
@@ -7247,14 +7347,14 @@
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td><span class="yes">Yes</span></td>
-<td><span class="yes">Yes</span></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>salesspider</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
@@ -7262,7 +7362,7 @@
 <td>showmelocal</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
@@ -7278,7 +7378,7 @@
 <td>switchboard</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
@@ -7286,7 +7386,15 @@
 <td>theusaexplorer</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
+<td></td>
+</tr>
+<tr>
+<td>tripadvisor</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
 </tr>
@@ -7295,7 +7403,7 @@
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
@@ -7310,8 +7418,16 @@
 <td>whitepages</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>worldweb</td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 <td><span class="yes">Yes</span></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -7323,18 +7439,26 @@
 <td></td>
 </tr>
 <tr>
-<td>yasabe</td>
+<td>yalwa</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>YellowBook</td>
+<td>yasabe</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
+</tr>
+<tr>
+<td>yellowbook</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
@@ -7350,7 +7474,7 @@
 <td>yellowpagecity</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
 </tr>
@@ -7371,17 +7495,25 @@
 <td></td>
 </tr>
 <tr>
-<td>ziplocal</td>
+<td>ziplocalonline</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td>Was previously referred to as ziplocal</td>
 </tr>
 <tr>
 <td>zocdoc</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>zomato</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -7403,9 +7535,9 @@
 <tr>
 <td>192</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
@@ -7413,7 +7545,7 @@
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td><span class="yes">Yes</span></td>
-<td><span class="yes">Yes</span></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -7427,17 +7559,17 @@
 <tr>
 <td>brownbook</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>businessclassified</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
@@ -7449,15 +7581,31 @@
 <td></td>
 </tr>
 <tr>
-<td>CityVisitor</td>
+<td><s>bview</s></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td>No longer available</td>
+</tr>
+<tr>
+<td>cityvisitor</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>cylex</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>dentons</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td><span class="yes">Yes</span></td>
@@ -7476,14 +7624,14 @@
 <td>factual</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>find-us-here</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -7491,7 +7639,7 @@
 <tr>
 <td>foursquare</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -7499,7 +7647,7 @@
 <tr>
 <td>freeindex</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -7507,15 +7655,15 @@
 <tr>
 <td>fyple</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>google</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -7524,16 +7672,16 @@
 <td>hotfrog</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>independent</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
@@ -7541,13 +7689,37 @@
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td><span class="yes">Yes</span></td>
-<td><span class="yes">Yes</span></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
-<td>localmole</td>
+<td><s>localmole</s></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td>No longer available</td>
+</tr>
+<tr>
+<td>manta</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td>Currently causing issues in grabbing profile details</td>
+</tr>
+<tr>
+<td>misterwhat</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
+</tr>
+<tr>
+<td>mylocalservices</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -7556,32 +7728,8 @@
 <td>near</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>manta</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>misterwhat</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>mylocalservices</td>
-<td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
-<td></td>
 <td></td>
 </tr>
 <tr>
@@ -7593,9 +7741,17 @@
 <td></td>
 </tr>
 <tr>
-<td>scoot</td>
+<td>opentable</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
+</tr>
+<tr>
+<td>scoot</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -7603,23 +7759,23 @@
 <tr>
 <td>thediscdirectory</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>thesun</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>thomsonlocal</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -7627,7 +7783,7 @@
 <tr>
 <td>tipped</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -7635,9 +7791,17 @@
 <tr>
 <td>touchlocal</td>
 <td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
+</tr>
+<tr>
+<td>tripadvisor</td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -7645,7 +7809,7 @@
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
@@ -7660,30 +7824,54 @@
 <td>uk-local-search</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>ukplaces</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>wampit</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
+</tr>
+<tr>
+<td><s>welovelocal</s></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td>No longer available</td>
 </tr>
 <tr>
 <td>wheresbest</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
+</tr>
+<tr>
+<td>worldweb</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>yahoo</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -7692,14 +7880,14 @@
 <td>yalwa</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>yell</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -7707,7 +7895,15 @@
 <tr>
 <td>yelp</td>
 <td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
+</tr>
+<tr>
+<td>zomato</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -7731,14 +7927,14 @@
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td><span class="yes">Yes</span></td>
-<td><span class="yes">Yes</span></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>aubiz</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
 </tr>
@@ -7746,15 +7942,15 @@
 <td>aussieweb</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>australiabusinesslisting</td>
+<td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
@@ -7762,15 +7958,15 @@
 <td>australianguide</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>australianplanet</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
@@ -7778,33 +7974,33 @@
 <td>bloo</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>brownbookaus</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>businesscomau</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
-<td>cylexaus</td>
-<td><span class="yes">Yes</span></td>
-<td></td>
+<td>cylex</td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td>Was previously referred to as cylexaus</td>
 </tr>
 <tr>
 <td>dlook</td>
@@ -7817,31 +8013,39 @@
 <tr>
 <td>eatability</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>facebook</td>
 <td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
+</tr>
+<tr>
+<td>factual</td>
+<td><span class="yes">Yes</span></td>
 <td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>find-us-here</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>foursquare</td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -7849,48 +8053,40 @@
 <tr>
 <td>fyple</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>google</td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
-<td>hotfrogaus</td>
+<td>hotfrog</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-</tr>
-<tr>
-<td>localstore</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>Was previously referred to as hotfrogaus</td>
 </tr>
 <tr>
 <td>localbd</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>localbusinessguide</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
@@ -7898,39 +8094,63 @@
 <td>localcomau</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
+<td></td>
+</tr>
+<tr>
+<td>localsearch</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>localstore</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>manta</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td>Currently causing issues in grabbing profile details</td>
 </tr>
 <tr>
 <td>nationaldirectory</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>nearyouau</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
-<td>manta</td>
+<td>pinkpages</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>reverseaustralia</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
 </tr>
@@ -7943,6 +8163,14 @@
 <td></td>
 </tr>
 <tr>
+<td>streetdirectory</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>superpagesaus</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -7951,11 +8179,19 @@
 <td></td>
 </tr>
 <tr>
-<td>streetdirectory</td>
+<td>tripadvisor</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
-<td></td>
+</tr>
+<tr>
+<td>truelocal</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
@@ -7963,7 +8199,7 @@
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
@@ -7975,18 +8211,10 @@
 <td></td>
 </tr>
 <tr>
-<td>truelocal</td>
-<td><span class="yes">Yes</span></td>
-<td></td>
-<td><span class="yes">Yes</span></td>
-<td><span class="yes">Yes</span></td>
-<td></td>
-</tr>
-<tr>
 <td>vicdir</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
 </tr>
@@ -7994,23 +8222,31 @@
 <td>whereis</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>whitepagesaus</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
 <td><span class="yes">Yes</span></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>womo</td>
 <td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
+</tr>
+<tr>
+<td>worldweb</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
 </tr>
@@ -8018,7 +8254,7 @@
 <td>wowcity</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
 </tr>
@@ -8026,30 +8262,38 @@
 <td>yalwa</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>yellowbook</td>
+<td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>yellowpagesaus</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
-<td>yelp-aus</td>
+<td>yelp</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td>Was previously referred to as yelp-aus</td>
+</tr>
+<tr>
+<td>zomato</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -8073,31 +8317,55 @@
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td><span class="yes">Yes</span></td>
-<td><span class="yes">Yes</span></td>
 <td></td>
-</tr>
-<tr>
-<td>c411</td>
-<td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
-<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>allpages</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
+</tr>
+<tr>
+<td>bbb</td>
+<td><span class="yes">Yes</span></td>
 <td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>brownbook</td>
 <td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>c411</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>canadabusinessdirectory</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
+</tr>
+<tr>
+<td>canadaone</td>
+<td><span class="yes">Yes</span></td>
 <td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
@@ -8112,31 +8380,31 @@
 <td>cdnpages</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
-<td>cylexcan</td>
+<td>cylex</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td>Was previously referred to as cylexcan</td>
 </tr>
 <tr>
 <td>directorycentral</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>facebook</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
@@ -8144,14 +8412,14 @@
 <td>factual</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>find-us-here</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -8159,72 +8427,88 @@
 <tr>
 <td>foursquare</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
-<td>goldbook</td>
+<td><s>goldbook</s></td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td>No longer available</td>
 </tr>
 <tr>
 <td>google</td>
-<td></td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
-<td>hotfrogcan</td>
+<td>hotfrog</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td>Was previously referred to as hotfrogcan</td>
 </tr>
 <tr>
 <td>ibegin</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-</tr>
-<tr>
-<td>nearyouca</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
-<td></td>
-<td></td>
 <td></td>
 </tr>
 <tr>
 <td>manta</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td>Currently causing issues in grabbing profile details</td>
+</tr>
+<tr>
+<td>nearyouca</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>opentable</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>ourbis</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>pagesjaunes</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>profilecanada</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
@@ -8232,16 +8516,24 @@
 <td>salespider</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>superpages</td>
-<td></td>
-<td></td>
-<td></td>
 <td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>tripadvisor</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -8249,7 +8541,7 @@
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
@@ -8269,51 +8561,75 @@
 <td></td>
 </tr>
 <tr>
-<td>wikidomo</td>
+<td>worldweb</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
-<td></td>
+</tr>
+<tr>
+<td>yahoo</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>yalwa</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>yellowpagesca</td>
 <td><span class="yes">Yes</span></td>
-<td></td>
 <td><span class="yes">Yes</span></td>
-<td><span class="yes">Yes</span></td>
-<td></td>
-</tr>
-<tr>
-<td>yelp-can</td>
-<td><span class="yes">Yes</span></td>
-<td></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
-<td>ziplocal</td>
+<td>yelp</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td>Was previously referred to as yelp-can</td>
+</tr>
+<tr>
+<td>ylm</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
+</tr>
+<tr>
+<td>ziplocalonline</td>
+<td><span class="yes">Yes</span></td>
 <td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td>Was previously referred to as ziplocal</td>
+</tr>
+<tr>
+<td>zomato</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
 <td>zoominfo</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
-<td></td>
-<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 </tbody></table>
@@ -10689,6 +11005,8 @@
 <td>860</td>
 </tr>
 </tbody></table>
+
+<p>.</p>
 
       </div>
       <div class="dark-box">
