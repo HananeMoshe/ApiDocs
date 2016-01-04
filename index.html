@@ -788,7 +788,9 @@
 
           <h1 id="local-directories">Local Directories</h1>
 
-<h2 id="fetch-profile-url-(batch-method)">Fetch Profile URL (Batch Method)</h2>
+<h2 id="fetch-profile-url">Fetch Profile URL</h2>
+
+<p><span class="label label-info">Batch Method</span></p>
 
 <blockquote>
 <p>Success (201 Created)</p>
@@ -878,6 +880,8 @@
 </tbody></table>
 
 <h2 id="fetch-profile-url-(telephone-number-only)">Fetch Profile URL (Telephone Number Only)</h2>
+
+<p><span class="label label-info">Batch Method</span></p>
 
 <blockquote>
 <p>Success (201 Created)</p>
@@ -1013,7 +1017,7 @@
 </tr>
 <tr>
 <td>profile-url</td>
-<td><span class="label label-required">Required</span></td>
+<td><span class="label label-required">Required</span> For requests to fetch Google profile data please see <a href="#constructing-google+-urls">constructing Google URLs</a>.</td>
 </tr>
 <tr>
 <td>country</td>
@@ -1217,7 +1221,7 @@
 </tr>
 <tr>
 <td>profile-url</td>
-<td><span class="label label-required">Required</span></td>
+<td><span class="label label-required">Required</span> For requests to fetch Google reviews please see <a href="#constructing-google+-urls">constructing Google URLs</a>.</td>
 </tr>
 <tr>
 <td>country</td>
@@ -2248,16 +2252,20 @@
 <td><span class="label label-required">Required</span> Newline (\n) separated list of search terms.</td>
 </tr>
 <tr>
+<td>website-addresses</td>
+<td>Supply one or more website addresses (max 10) as a JSON string. For example, [“test.com”,“test2.com”].</td>
+</tr>
+<tr>
 <td>website-address</td>
-<td></td>
+<td>(supported but deprecated)</td>
 </tr>
 <tr>
 <td>website-address-2</td>
-<td></td>
+<td>(supported but deprecated)</td>
 </tr>
 <tr>
 <td>website-address-3</td>
-<td></td>
+<td>(supported but deprecated)</td>
 </tr>
 <tr>
 <td>country</td>
@@ -2383,16 +2391,20 @@
 <td>Newline (\n) separated list of search terms</td>
 </tr>
 <tr>
+<td>website-addresses</td>
+<td>Supply one or more website addresses (max 10) as a JSON string. For example, [“test.com”,“test2.com”].</td>
+</tr>
+<tr>
 <td>website-address</td>
-<td></td>
+<td>(supported but deprecated)</td>
 </tr>
 <tr>
 <td>website-address-2</td>
-<td></td>
+<td>(supported but deprecated)</td>
 </tr>
 <tr>
 <td>website-address-3</td>
-<td></td>
+<td>(supported but deprecated)</td>
 </tr>
 <tr>
 <td>country</td>
@@ -2598,6 +2610,9 @@
             </span><span class="p">],</span><span class="w">
             </span><span class="s2">"ppc_search_terms"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="s2">"lookup_ppc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"website-addresses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"http://www.testpub.com/"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
             </span><span class="s2">"website_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.testpub.com/"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"website_address_2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="s2">"website_address_3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -7088,14 +7103,42 @@
 
           <h1 id="appendix">Appendix</h1>
 
+<h2 id="constructing-google+-urls">Constructing Google+ URLs</h2>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$url</span> <span class="o">=</span> <span class="s1">'https://www.google.com/search?'</span> <span class="o">.</span> <span class="nb">http_build_query</span><span class="p">([</span>
+    <span class="s1">'q'</span>    <span class="o">=&gt;</span> <span class="nb">sprintf</span><span class="p">(</span><span class="s1">'"%s" "%s" %s'</span><span class="p">,</span> <span class="s1">'Hub Plumbing &amp; Mechanical Inc'</span><span class="p">,</span> <span class="s1">'New York'</span><span class="p">,</span> <span class="s1">'212-482-8500'</span><span class="p">),</span>
+    <span class="s1">'rlst'</span> <span class="o">=&gt;</span> <span class="s1">'fn'</span><span class="p">,</span>
+    <span class="s1">'gbv'</span>  <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+<span class="p">]);</span>
+</code></pre>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$url</span> <span class="o">=</span> <span class="s1">'https://www.google.com/search?'</span> <span class="o">.</span> <span class="nb">http_build_query</span><span class="p">([</span>
+    <span class="s1">'q'</span>   <span class="o">=&gt;</span> <span class="nb">sprintf</span><span class="p">(</span><span class="s1">'"%s" "%s"'</span><span class="p">,</span> <span class="s1">'Pizza Hut'</span><span class="p">,</span> <span class="s1">'67337'</span><span class="p">),</span>
+    <span class="s1">'rlst'</span> <span class="o">=&gt;</span> <span class="s1">'fn'</span><span class="p">,</span>
+    <span class="s1">'gbv'</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+<span class="p">]);</span>    
+</code></pre>
+
+<p>Google recently simplified their Google+ profile pages and removed much of the useful profile information that we normally gather through APIs documented here, such as NAP and reviews. Consequently we have stopped using Google+ Local listings and have instead started tracking business profile information via Google SERP pages. This means that when requesting Google profile data or reviews via our API you need to supply us with a pre-formatted search URL rather than the plus URL that corresponds to that business. Your search URL should be constructed with one of the following formats:</p>
+
+<h3 id="business-names-(in-quotes)-+-zip-code-(in-quotes)-and-phone-number-(without-quotes)">Business names (in quotes) + zip code (in quotes) and phone number (without quotes)</h3>
+
+<p><code class="prettyprint">https://www.google.com/search?q=&quot;Hub+Plumbing+%26+Mechanical+Inc&quot;+&quot;New+York&quot;+212-482-8500&amp;rlst=fn&amp;gbv=2</code></p>
+
+<h3 id="business-name-(in-quotes)-+-zipcode-(in-quotes)">Business name (in quotes) + zipcode (in quotes)</h3>
+
+<p><code class="prettyprint">https://www.google.com/search?q=&quot;Pizza+Hut&quot;+&quot;67337&quot;&amp;gbv=2&amp;rlst=fn</code></p>
+
+<p>Please make sure you include &amp;gbv=2&amp;rlst=fn in whichever format you use. One format may work better than another for a specific business so we recommend testing both approaches to find the optimal profile URL. The code snippets on the right give examples of how to generate each type of URL.</p>
+
 <h2 id="supported-local-directories">Supported Local Directories</h2>
 
-<p>The following tables provide details of the local directories we support for looking up profile URLs, profile details and/or reviews. For some directories we are able to grab all informatio and for others only partial information due to restrictions on certain sites or due to complications in the data gathering process (e.g. site uses JS to mask certain data points or doesn&rsquo;t present listing on separate, distinct URLs)</p>
+<p>The following tables provide details of the local directories we support for looking up profile URLs, profile details and/or reviews. For some directories we are able to grab all information and for others only partial information due to restrictions on certain sites or due to complications in the data gathering process (e.g. site uses JS to mask certain data points or doesn&rsquo;t present listing on separate, distinct URLs)</p>
 
-<h3 id="key-to-table:">Key to table:</h3>
+<h3 id="key-for-tables">Key for tables</h3>
 
 <ul>
-<li>Indentifier = name of directory to be used when querying data for a specific directory</li>
+<li>Identifier = name of directory to be used when querying data for a specific directory</li>
 <li>NAP = we are able to retrieve Business Name, Address, Phone Number from a directory (some sites provide address in component parts, some as single data string)</li>
 <li>Reviews = we grab review content, star rating + review count from a directory</li>
 <li>Find Profile URL = we are able to return a URL on directory for this business</li>
