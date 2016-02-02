@@ -7107,15 +7107,11 @@
 <pre><code class="highlight php"><span class="cp">&lt;?php</span>
 <span class="nv">$url</span> <span class="o">=</span> <span class="s1">'https://www.google.com/search?'</span> <span class="o">.</span> <span class="nb">http_build_query</span><span class="p">([</span>
     <span class="s1">'q'</span>    <span class="o">=&gt;</span> <span class="nb">sprintf</span><span class="p">(</span><span class="s1">'"%s" "%s" %s'</span><span class="p">,</span> <span class="s1">'Hub Plumbing &amp; Mechanical Inc'</span><span class="p">,</span> <span class="s1">'New York'</span><span class="p">,</span> <span class="s1">'212-482-8500'</span><span class="p">),</span>
-    <span class="s1">'rlst'</span> <span class="o">=&gt;</span> <span class="s1">'fn'</span><span class="p">,</span>
-    <span class="s1">'gbv'</span>  <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
 <span class="p">]);</span>
 </code></pre>
 <pre><code class="highlight php"><span class="cp">&lt;?php</span>
 <span class="nv">$url</span> <span class="o">=</span> <span class="s1">'https://www.google.com/search?'</span> <span class="o">.</span> <span class="nb">http_build_query</span><span class="p">([</span>
     <span class="s1">'q'</span>   <span class="o">=&gt;</span> <span class="nb">sprintf</span><span class="p">(</span><span class="s1">'"%s" "%s"'</span><span class="p">,</span> <span class="s1">'Pizza Hut'</span><span class="p">,</span> <span class="s1">'67337'</span><span class="p">),</span>
-    <span class="s1">'rlst'</span> <span class="o">=&gt;</span> <span class="s1">'fn'</span><span class="p">,</span>
-    <span class="s1">'gbv'</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
 <span class="p">]);</span>    
 </code></pre>
 
@@ -7123,13 +7119,13 @@
 
 <h3 id="business-names-(in-quotes)-+-zip-code-(in-quotes)-and-phone-number-(without-quotes)">Business names (in quotes) + zip code (in quotes) and phone number (without quotes)</h3>
 
-<p><code class="prettyprint">https://www.google.com/search?q=&quot;Hub+Plumbing+%26+Mechanical+Inc&quot;+&quot;New+York&quot;+212-482-8500&amp;rlst=fn&amp;gbv=2</code></p>
+<p><code class="prettyprint">https://www.google.com/search?q=&quot;Hub+Plumbing+%26+Mechanical+Inc&quot;+&quot;New+York&quot;+212-482-8500</code></p>
 
 <h3 id="business-name-(in-quotes)-+-zipcode-(in-quotes)">Business name (in quotes) + zipcode (in quotes)</h3>
 
-<p><code class="prettyprint">https://www.google.com/search?q=&quot;Pizza+Hut&quot;+&quot;67337&quot;&amp;gbv=2&amp;rlst=fn</code></p>
+<p><code class="prettyprint">https://www.google.com/search?q=&quot;Pizza+Hut&quot;+&quot;67337&quot;</code></p>
 
-<p>Please make sure you include &amp;gbv=2&amp;rlst=fn in whichever format you use. One format may work better than another for a specific business so we recommend testing both approaches to find the optimal profile URL. The code snippets on the right give examples of how to generate each type of URL.</p>
+<p>One format may work better than another for a specific business so we recommend testing both approaches to find the optimal profile URL. The code snippets on the right give examples of how to generate each type of URL.</p>
 
 <h2 id="supported-local-directories">Supported Local Directories</h2>
 
@@ -8138,12 +8134,12 @@
 <td></td>
 </tr>
 <tr>
-<td>eatability</td>
+<td><s>eatability</s></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
-<td></td>
+<td>No longer available</td>
 </tr>
 <tr>
 <td>facebook</td>
