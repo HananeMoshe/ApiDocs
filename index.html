@@ -59,7 +59,7 @@
 <li>Methods which allow you to manipulate clients and reports stored within your BrightLocal control panel (marked with Account)</li>
 </ul>
 
-<p>The first type requires you to submit your requests as part of a batch - a container which makes it easy to bundle up multiple requests and the poll for all results with a signed request. <a href="#batches">You can read more about batches below.</a></p>
+<p>The first type requires you to submit your requests as part of a batch - a container which makes it easy to bundle up multiple requests and poll for all results. <a href="#batches">You can read more about batches below.</a></p>
 
           <h1 id="api-url">API URL</h1>
 
@@ -81,7 +81,7 @@
 </span><span class="k">echo</span> <span class="nv">$sig</span><span class="p">;</span>
 </code></pre>
 
-<p>All methods require a valid trial or production API key. Methods which manipulate or retrieve data from your account additionally require a signature. You ideally need to generate this signature for each request and keep its expiry short. For testing purposes you can chose to create a signature that will be valid for up to 30 minutes.</p>
+<p>All methods require a valid trial or production API key. Methods which manipulate or retrieve data in your account additionally require a signature. You ideally need to generate this signature for each request and set a short expiry time. For testing purposes you can chose to create a signature that will be valid for up to 30 minutes.</p>
 
 <h2 id="authentication-errors">Authentication Errors</h2>
 
@@ -247,6 +247,8 @@
 <li>Completed - processing completed successfully and job results are available</li>
 <li>Authentication for this method is via API key only.</li>
 </ul>
+
+<p>Whilst you can technically add as many jobs as you want to a batch we recommend you submit jobs in batches of a few hundred at a time. This will allow you to start receiving results sooner.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -677,7 +679,7 @@
 </tr>
 <tr>
 <td>country</td>
-<td><span class="label label-required">Required</span> Determines whether or not to search against .com, .ca, co.uk, .com.au search engines. One of USA, CAN:EN, CAN:FR, GBR or AUS.</td>
+<td><span class="label label-required">Required</span> Determines whether or not to search against .com, .ca, co.uk, .com.au search engines. One of USA, CAN:EN, CAN:FR, GBR, AUS, IRL or NZL.</td>
 </tr>
 <tr>
 <td>google-location</td>
@@ -713,7 +715,168 @@
 </tr>
 <tr>
 <td>listings</td>
-<td>Include details of all SERPs returned, not just the matches. Defaults to &ldquo;no&rdquo;. Accepts &ldquo;yes&rdquo; or &ldquo;no&rdquo;.</td>
+<td>Include details of all SERPs returned, not just the matches. Defaults to &ldquo;no&rdquo;. Accepts &ldquo;yes&rdquo; or &ldquo;no&rdquo;. The default is &ldquo;no&rdquo;.</td>
+</tr>
+<tr>
+<td>screenshots</td>
+<td>Determines whether or not to generate SERP screenshots and include the links to those screenshots in the response. Accepts &ldquo;yes&rdquo; or &ldquo;no&rdquo;. The default is &ldquo;no&rdquo;.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+    By default we return 5 pages or 50 results (whichever is lower). If you need more than this please contact us. We can increase to a maximum of 10 pages or 100 results on a case by case basis.
+</aside>
+
+<h2 id="bulk-search">Bulk Search</h2>
+
+<p><span class="label label-info">Batch Method</span></p>
+
+<blockquote>
+<p>Fetch rankings</p>
+</blockquote>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="k">use</span> <span class="nx">BrightLocal\Api</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">BrightLocal\Batches\V4</span> <span class="k">as</span> <span class="nx">BatchApi</span><span class="p">;</span>
+
+<span class="nv">$searches</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'restaurant new york'</span><span class="p">,</span>
+    <span class="s1">'restaurant manhattan'</span><span class="p">,</span>
+    <span class="s1">'restaurant 10019'</span>
+<span class="p">);</span>
+<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="nx">API_KEY</span><span class="p">,</span> <span class="nx">API_SECRET</span><span class="p">,</span> <span class="nx">API_ENDPOINT</span><span class="p">);</span>
+<span class="nv">$batchApi</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BatchApi</span><span class="p">(</span><span class="nv">$api</span><span class="p">);</span>
+<span class="nv">$batchId</span> <span class="o">=</span> <span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$batchId</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">printf</span><span class="p">(</span><span class="s1">'Created batch ID %d%s'</span><span class="p">,</span> <span class="nv">$batchId</span><span class="p">,</span> <span class="nx">PHP_EOL</span><span class="p">);</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$searches</span> <span class="k">as</span> <span class="nv">$search</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">call</span><span class="p">(</span>
+            <span class="s1">'/v4/rankings/bulk-search'</span><span class="p">,</span>
+            <span class="k">array</span><span class="p">(</span>
+                <span class="s1">'batch-id'</span> <span class="o">=&gt;</span> <span class="nv">$batchId</span><span class="p">,</span>
+                <span class="s1">'search-engine'</span>   <span class="o">=&gt;</span> <span class="s1">'google'</span><span class="p">,</span>
+                <span class="s1">'country'</span>         <span class="o">=&gt;</span> <span class="s1">'USA'</span><span class="p">,</span>
+                <span class="s1">'google-location'</span> <span class="o">=&gt;</span> <span class="s1">'New York, NY'</span><span class="p">,</span>
+                <span class="s1">'search-term'</span>     <span class="o">=&gt;</span> <span class="nv">$search</span><span class="p">,</span>
+                <span class="s1">'urls'</span>            <span class="o">=&gt;</span> <span class="s1">'["le-bernardin.com"]'</span><span class="p">,</span>
+                <span class="s1">'business-names'</span>  <span class="o">=&gt;</span> <span class="s1">'Le Bernardin'</span>
+            <span class="p">)</span>
+        <span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$result</span><span class="p">[</span><span class="s1">'success'</span><span class="p">])</span> <span class="p">{</span>
+            <span class="nb">printf</span><span class="p">(</span><span class="s1">'Added job with ID %d%s'</span><span class="p">,</span> <span class="nv">$result</span><span class="p">[</span><span class="s1">'job-id'</span><span class="p">],</span> <span class="nx">PHP_EOL</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">commit</span><span class="p">(</span><span class="nv">$batchId</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="s1">'Committed batch successfully.'</span><span class="o">.</span><span class="nx">PHP_EOL</span><span class="p">;</span>
+        <span class="c1">// poll for results, in a real world example you might
+</span>        <span class="c1">// want to do this in a separate process (such as via an
+</span>        <span class="c1">// AJAX poll)
+</span>        <span class="k">do</span> <span class="p">{</span>
+            <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">get_results</span><span class="p">(</span><span class="nv">$batchId</span><span class="p">);</span>
+            <span class="nb">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// limit how often you poll
+</span>        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="nb">in_array</span><span class="p">(</span><span class="nv">$results</span><span class="p">[</span><span class="s1">'status'</span><span class="p">],</span> <span class="k">array</span><span class="p">(</span><span class="s1">'Stopped'</span><span class="p">,</span> <span class="s1">'Finished'</span><span class="p">)));</span>
+        <span class="nb">print_r</span><span class="p">(</span><span class="nv">$results</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<blockquote>
+<p>Success (201 Created)</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"job-ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="s2">"3"</span><span class="p">]</span><span class="w">    
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failure (405 Method Not Allowed)</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"INVALID_METHOD"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid method specified. Only POST method is available"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failure (500 Internal Server Error)</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unable to add job(s)"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This method works the same as the <a href="#search">search</a> method above except it allows you to submit up to 100 search terms in one request. Use this when you want to look up rankings for many hundreds or thousands of search terms.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://tools.brightlocal.com/seo-tools/api/v4/rankings/bulk-search</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api-key</td>
+<td><span class="label label-required">Required</span></td>
+</tr>
+<tr>
+<td>batch-id</td>
+<td><span class="label label-required">Required</span></td>
+</tr>
+<tr>
+<td>search-engine</td>
+<td><span class="label label-required">Required</span> One of google, google-places, yahoo, yahoo-local, bing, bing-local.</td>
+</tr>
+<tr>
+<td>country</td>
+<td><span class="label label-required">Required</span> Determines whether or not to search against .com, .ca, co.uk, .com.au search engines. One of USA, CAN:EN, CAN:FR, GBR, AUS, IRL or NZL.</td>
+</tr>
+<tr>
+<td>google-location</td>
+<td>Allows you to optionally localize results by specifying your physical location. Specify a ZIP, city name or region. Only applicable to US searches. Also see <a href="#check-location">Check Location</a> method.</td>
+</tr>
+<tr>
+<td>bing-location</td>
+<td>Allows you to optionally localize results by specifying your physical location. See <a href="#check-location">Check Location</a> method.</td>
+</tr>
+<tr>
+<td>search-terms</td>
+<td><span class="label label-required">Required</span> Encode as a JSON string, e.g. [&ldquo;restaurant new york&rdquo;, &ldquo;restaurant&rdquo;, &ldquo;cafe&rdquo;] (max 100).</td>
+</tr>
+<tr>
+<td>urls</td>
+<td>The URLs to get ranking information for. Encode as a JSON string, e.g. [&ldquo;www.bluehillfarm.com&rdquo;, &ldquo;www.candle79.com&rdquo;, &ldquo;shabutatsu.com&rdquo;, &ldquo;marea-nyc.com&rdquo;, &ldquo;www.taorestaurant.com&rdquo;] (max 10).</td>
+</tr>
+<tr>
+<td>business-names</td>
+<td>A list of possible business names to search for. Encode as a JSON string, e.g. [&ldquo;The Rose Pub&rdquo;,&ldquo;Rose Pub&rdquo;,&ldquo;The Rose&rdquo;]. For backwards compatibility this also supports a newline (\n) separated list.</td>
+</tr>
+<tr>
+<td>postcode</td>
+<td>A valid ZIP or country postal code.</td>
+</tr>
+<tr>
+<td>telephone</td>
+<td>A valid telephone number.</td>
+</tr>
+<tr>
+<td>include-secondary-matches</td>
+<td>Determines whether or not to include results matched by name, telephone and/or ZIP/postal code. One of yes or no. This should be used in conjunction with the postal and telephone parameters.</td>
+</tr>
+<tr>
+<td>listings</td>
+<td>Include details of all SERPs returned, not just the matches. Defaults to &ldquo;no&rdquo;. Accepts &ldquo;yes&rdquo; or &ldquo;no&rdquo;. The default is &ldquo;no&rdquo;.</td>
+</tr>
+<tr>
+<td>screenshots</td>
+<td>Determines whether or not to generate SERP screenshots and include the links to those screenshots in the response. Accepts &ldquo;yes&rdquo; or &ldquo;no&rdquo;. The default is &ldquo;no&rdquo;.</td>
 </tr>
 </tbody></table>
 
@@ -754,7 +917,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Look up a location that&rsquo;s suitable for use when setting Google or Bing location whilst performing a search using the method above.</p>
+<p>Look up a location that&rsquo;s suitable for use when setting Google or Bing location whilst performing a search using the method above. This method is deprecated for use with Google as there&rsquo;s no longer any need to check if the location you want to set is valid.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -778,7 +941,7 @@
 </tr>
 <tr>
 <td>country</td>
-<td>One of USA, CAN, GBR or AUS.</td>
+<td>One of USA, CAN, GBR, AUS, IRL or NZL.</td>
 </tr>
 <tr>
 <td>location</td>
