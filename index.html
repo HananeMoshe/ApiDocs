@@ -2057,7 +2057,7 @@
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients</code></p>
+<p><code class="prettyprint">GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/search</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -2522,7 +2522,7 @@
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations</code></p>
+<p><code class="prettyprint">GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/search</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -2887,6 +2887,7 @@
         </span><span class="s2">"results"</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"49"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test 1"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Weekly"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"day_of_week"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thursday"</span><span class="p">,</span><span class="w">
@@ -2894,6 +2895,7 @@
             </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test 2"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Weekly"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"day_of_week"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wednesday"</span><span class="p">,</span><span class="w">
@@ -2901,6 +2903,7 @@
             </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test 3"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Weekly"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"day_of_week"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wednesday"</span><span class="p">,</span><span class="w">
@@ -2943,6 +2946,77 @@
 </tr>
 </tbody></table>
 
+<h2 id="get-all-reports">Get All Reports</h2>
+
+<p><span class="label label-info">Account Method</span></p>
+
+<blockquote>
+<p>Success (200 OK)</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">"response"</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"results"</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"49"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test 1"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Weekly"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"day_of_week"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thursday"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"day_of_month"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test 2"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Weekly"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"day_of_week"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wednesday"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"day_of_month"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test 3"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Weekly"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"day_of_week"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wednesday"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"day_of_month"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">    
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns basic details about all reports that match your search criteria.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://tools.brightlocal.com/seo-tools/api/v2/lsrc/search</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api-key</td>
+<td><span class="label label-required">Required</span></td>
+</tr>
+<tr>
+<td>sig</td>
+<td><span class="label label-required">Required</span> <a href="#authentication">See above for how to generate signature and expires values.</a></td>
+</tr>
+<tr>
+<td>expires</td>
+<td><span class="label label-required">Required</span> <a href="#authentication">See above for how to generate signature and expires values.</a></td>
+</tr>
+<tr>
+<td>q</td>
+<td>Search string to match reports against. <span class="label label-required">Required</span></td>
+</tr>
+</tbody></table>
+
 <h2 id="get-report">Get Report</h2>
 
 <p><span class="label label-info">Account Method</span></p>
@@ -2956,7 +3030,7 @@
             </span><span class="s2">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"white_label_profile_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"location-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Pub"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Weekly"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"day_of_week"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wednesday"</span><span class="p">,</span><span class="w">
@@ -3123,18 +3197,21 @@
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"campaign_history_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25554"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"history_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Scheduled"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"generation_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-07-18 13:42:32"</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"campaign_history_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25499"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"history_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Scheduled"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"generation_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-07-18 11:29:50"</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"campaign_history_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25439"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"history_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Scheduled"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"generation_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-07-18 11:17:48"</span><span class="w">
             </span><span class="p">}</span><span class="w">
@@ -3229,7 +3306,7 @@
         </span><span class="s2">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9636"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"white_label_profile_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alaska Bar Association"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adhoc"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"day_of_week"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monday"</span><span class="p">,</span><span class="w">
@@ -4327,7 +4404,7 @@
 <td><span class="label label-required">Required</span> <a href="#authentication">See above for how to generate signature and expires values.</a></td>
 </tr>
 <tr>
-<td>location</td>
+<td>location-id</td>
 <td>You can specify location ID or unique reference to create report for a location</td>
 </tr>
 <tr>
@@ -4376,10 +4453,6 @@
 </tr>
 <tr>
 <td>business-type</td>
-<td><span class="label label-required">Required</span></td>
-</tr>
-<tr>
-<td>location</td>
 <td><span class="label label-required">Required</span></td>
 </tr>
 <tr>
@@ -4544,7 +4617,7 @@
     </span><span class="s2">"report"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"report_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"255565"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"88"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"235285"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"weekly_run"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"monthly_run"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"report_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The View"</span><span class="p">,</span><span class="w">
@@ -4719,7 +4792,7 @@
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"report_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"278"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"report_run_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2457"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"report_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test 1"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"website_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.test1.com"</span><span class="p">,</span><span class="w">
@@ -4764,7 +4837,7 @@
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"report_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"660"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"report_run_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2756"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"report_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test 2"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"website_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -4835,7 +4908,7 @@
 <td><span class="label label-required">Required</span> <a href="#authentication">See above for how to generate signature and expires values.</a></td>
 </tr>
 <tr>
-<td>client-id</td>
+<td>location-id</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -5614,8 +5687,8 @@
 <td><span class="label label-required">Required</span></td>
 </tr>
 <tr>
-<td>client-id</td>
-<td>Associate this report with a client in your account. This ID needs to correspond to a valid client in your account.</td>
+<td>location-id</td>
+<td>Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.</td>
 </tr>
 <tr>
 <td>white-label-profile-id</td>
@@ -5780,7 +5853,7 @@
     </span><span class="s2">"report"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"report_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"270"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"report_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Le Bernardin"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"business_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Le Bernardin"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"contact_telephone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+1 212-554-1515"</span><span class="p">,</span><span class="w">
@@ -6007,7 +6080,7 @@
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"report_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"270"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"report_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Le Bernardin"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-06 11:43:57"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"last_update"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-06 11:51:35"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"is_running"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
@@ -6018,7 +6091,7 @@
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"report_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"141"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"report_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zuni cafe #2"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-12-10 15:24:53"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"last_update"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-12-15 02:07:38"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"is_running"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
@@ -6029,7 +6102,7 @@
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"report_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"119"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"report_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zuni Cafe"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-10-21 10:23:00"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"last_update"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-12-15 02:06:54"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"is_running"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
@@ -6040,7 +6113,7 @@
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"report_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"144"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"report_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slade &amp; Baker Vision Center"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-12-16 15:17:10"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"last_update"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-12-15 02:05:48"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"is_running"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
@@ -6081,8 +6154,8 @@
 <td><span class="label label-required">Required</span> <a href="#authentication">See above for how to generate signature and expires values.</a></td>
 </tr>
 <tr>
-<td>client-id</td>
-<td>Filter the list of reports returned by client ID. This ID must correspond to a valid client in your account.</td>
+<td>location-id</td>
+<td>Filter the list of reports returned by location ID. This ID must correspond to a valid location in your account.</td>
 </tr>
 </tbody></table>
 
@@ -6099,7 +6172,7 @@
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"report_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"270"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"report_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Le Bernardin"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-06 11:43:57"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"last_update"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-06 11:51:35"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"is_running"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
@@ -6805,7 +6878,7 @@
 </tr>
 <tr>
 <td>report_type</td>
-<td><span class="label label-required">Required</span> One of with or without. &lsquo;with&rsquo; - the business has a Google+ profile. &#39;without&rsquo; - Ignore this business, just display competitor information. Defaults to with.</td>
+<td><span class="label label-required">Required</span> One of with or without. &lsquo;with&rsquo; - the business has a Google Local profile. &#39;without&rsquo; - Ignore this business, just display competitor information. Defaults to with.</td>
 </tr>
 <tr>
 <td>address1</td>
@@ -6913,6 +6986,10 @@
 <td><span class="label label-required">Required</span> <a href="#authentication">See above for how to generate signature and expires values.</a></td>
 </tr>
 <tr>
+<td>report-ID</td>
+<td><span class="label label-required">Required</span></td>
+</tr>
+<tr>
 <td>report_name</td>
 <td></td>
 </tr>
@@ -6938,7 +7015,7 @@
 </tr>
 <tr>
 <td>report_type</td>
-<td>One of with or without. &#39;with&rsquo; - the business has a Google+ profile. &#39;without&rsquo; - Ignore this business, just display competitor information. Defaults to with.</td>
+<td>One of with or without. &#39;with&rsquo; - the business has a Google Local profile. &#39;without&rsquo; - Ignore this business, just display competitor information. Defaults to with.</td>
 </tr>
 <tr>
 <td>address1</td>
@@ -7146,7 +7223,7 @@
                 </span><span class="s2">"report_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test 1"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Weekly"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"is_running"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yes"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"running_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Identifying your top Google+ Local competitors"</span><span class="w">
+                </span><span class="s2">"running_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Identifying your top Google Local competitors"</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"report_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50"</span><span class="p">,</span><span class="w">
@@ -7315,10 +7392,8 @@
         </span><span class="s2">"top_10"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="s2">"business_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Iron Galaxy Studios LLC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://plus.google.com/106762967148362846974/about"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.co.uk/search?q=Iron+Galaxy+Studios+LLC&amp;oq=Iron+Galaxy+Studios+LLC"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"claimed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_views"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="s2">"citations_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">74</span><span class="p">,</span><span class="w">
             </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37/100"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"backlinks"</span><span class="p">:</span><span class="w"> </span><span class="mi">1395</span><span class="p">,</span><span class="w">
@@ -7331,10 +7406,8 @@
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="s2">"business_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Iron Financial Management Inc"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://plus.google.com/116182082718959195517/about"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.co.uk/search?newwindow=1&amp;safe=active&amp;q=Iron+Financial+Management+Inc"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"claimed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_views"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="s2">"citations_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">118</span><span class="p">,</span><span class="w">
             </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22/100"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"backlinks"</span><span class="p">:</span><span class="w"> </span><span class="mi">86</span><span class="p">,</span><span class="w">
@@ -7347,10 +7420,8 @@
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="s2">"business_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chicago Tube and Iron Company"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://plus.google.com/115679173636656864032/about"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.co.uk/search?newwindow=1&amp;safe=active&amp;q=Chicago+Tube+and+Iron+Company+Chicago"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"claimed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_views"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="s2">"citations_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">106</span><span class="p">,</span><span class="w">
             </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30/100"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"backlinks"</span><span class="p">:</span><span class="w"> </span><span class="mi">190</span><span class="p">,</span><span class="w">
@@ -7366,10 +7437,8 @@
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="s2">"business_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Acorn Wire &amp;amp; Iron Works LLC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://plus.google.com/106228617083444002632/about"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.co.uk/search?newwindow=1&amp;safe=active&amp;gbv=2&amp;q=Acorn+Wire+%26+Iron+Works+LLC%2C+chicago"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"claimed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_views"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="s2">"citations_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">56</span><span class="p">,</span><span class="w">
             </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29/100"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"backlinks"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w">
@@ -7382,10 +7451,8 @@
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="s2">"business_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Iron &amp;amp; Wire Custom Metal Studio LLC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://plus.google.com/112699188083553695218/about"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.co.uk/search?newwindow=1&amp;safe=active&amp;gbv=2&amp;q=Iron+%26+Wire+Custom+Metal+Studio+LLC%2C+chicago"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"claimed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_views"</span><span class="p">:</span><span class="w"> </span><span class="mi">21023</span><span class="p">,</span><span class="w">
             </span><span class="s2">"citations_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
             </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18/100"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"backlinks"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
@@ -7400,10 +7467,8 @@
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="s2">"business_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adams Street Iron Inc"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://plus.google.com/108717129803017731795/about"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.co.uk/search?newwindow=1&amp;safe=active&amp;biw=1277&amp;bih=573&amp;q=Adams+Street+Iron+Inc%2C+Chicago"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"claimed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_views"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="s2">"citations_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">66</span><span class="p">,</span><span class="w">
             </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10/100"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"backlinks"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
@@ -7417,10 +7482,8 @@
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="s2">"business_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Iron Workers Union"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://plus.google.com/108612610808895922436/about"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.co.uk/search?newwindow=1&amp;safe=active&amp;gbv=2&amp;q=Iron+Workers+Union%2C+chicago+60130"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"claimed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_views"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="s2">"citations_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">39</span><span class="p">,</span><span class="w">
             </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"48/100"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"backlinks"</span><span class="p">:</span><span class="w"> </span><span class="mi">5037</span><span class="p">,</span><span class="w">
@@ -7434,10 +7497,8 @@
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="s2">"business_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shaw Environmental/Infrstrctr"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://plus.google.com/106703892745911911440/about"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.co.uk/search?newwindow=1&amp;safe=active&amp;gbv=2&amp;q=Shaw+Environmental%2FInfrstrctr%2C+chicago"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"claimed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_views"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="s2">"citations_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
             </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60/100"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"backlinks"</span><span class="p">:</span><span class="w"> </span><span class="mi">8884</span><span class="p">,</span><span class="w">
@@ -7574,10 +7635,8 @@
         </span><span class="s2">"top_10"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="s2">"business_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gold Eagle"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://plus.google.com/108823071668145410367/about"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.co.uk/search?newwindow=1&amp;safe=active&amp;site=&amp;source=hp&amp;q=gold+eagle+chicago"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"claimed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_views"</span><span class="p">:</span><span class="w"> </span><span class="mi">23656</span><span class="p">,</span><span class="w">
             </span><span class="s2">"citations_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">62</span><span class="p">,</span><span class="w">
             </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45/100"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"backlinks"</span><span class="p">:</span><span class="w"> </span><span class="mi">9918</span><span class="p">,</span><span class="w">
@@ -7590,10 +7649,8 @@
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="s2">"business_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rickey Gold Associates"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://plus.google.com/112595303241640812004/about"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.co.uk/search?newwindow=1&amp;safe=active&amp;q=Rickey+Gold+Associates"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"claimed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_views"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="s2">"citations_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">96</span><span class="p">,</span><span class="w">
             </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"26/100"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"backlinks"</span><span class="p">:</span><span class="w"> </span><span class="mi">57</span><span class="p">,</span><span class="w">
@@ -7606,10 +7663,8 @@
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="s2">"business_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bentley Gold Coast"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://plus.google.com/117553286714777820423/about"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.co.uk/search?newwindow=1&amp;safe=active&amp;q=Bentley+Gold+Coast%2C+Chicago&amp;oq=Bentley+Gold+Coast%2C+Chicago"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"claimed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_views"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="s2">"citations_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">89</span><span class="p">,</span><span class="w">
             </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32/100"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"backlinks"</span><span class="p">:</span><span class="w"> </span><span class="mi">87</span><span class="p">,</span><span class="w">
@@ -7622,10 +7677,8 @@
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="s2">"business_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gold Coast Tickets"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://plus.google.com/101551987745165273616/about"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.co.uk/search?newwindow=1&amp;safe=active&amp;q=Gold+Coast+Tickets%2C+Chicago"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"claimed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_views"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="s2">"citations_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">47</span><span class="p">,</span><span class="w">
             </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34/100"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"backlinks"</span><span class="p">:</span><span class="w"> </span><span class="mi">1362</span><span class="p">,</span><span class="w">
@@ -7638,10 +7691,8 @@
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="s2">"business_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gold Canyon Candles"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://plus.google.com/117435376200648462394/about"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profile_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.co.uk/search?newwindow=1&amp;safe=active&amp;q=Gold+Canyon+Candles%2C+Schaumburg%2C+IL+60193"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"claimed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"num_views"</span><span class="p">:</span><span class="w"> </span><span class="mi">17900</span><span class="p">,</span><span class="w">
             </span><span class="s2">"citations_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
             </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"n/a"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"backlinks"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -7841,7 +7892,7 @@
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="s2">"errors"</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w">
     </span><span class="s2">"INVALID_LOCATION_ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid location ID supplied"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w"> 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
