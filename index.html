@@ -2249,7 +2249,7 @@
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">PUT https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/</code></p>
+<p><code class="prettyprint">PUT https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/:locationId</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -2393,7 +2393,7 @@
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">DELETE https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/</code></p>
+<p><code class="prettyprint">DELETE https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/:locationId</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -2474,7 +2474,7 @@
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/:id</code></p>
+<p><code class="prettyprint">GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/:locationId</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -4952,9 +4952,6 @@
             </span><span class="s2">"possible"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
 
             </span><span class="p">],</span><span class="w">
-            </span><span class="s2">"old"</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w">
-
-            </span><span class="p">],</span><span class="w">
             </span><span class="s2">"activeDomains"</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"facebook.com"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"twitter.com"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -4971,9 +4968,30 @@
             </span><span class="s2">"possibleDomains"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
 
             </span><span class="p">},</span><span class="w">
-            </span><span class="s2">"oldDomains"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-
-            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"topDirectories"</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"citation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">182555</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"report_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2457"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"citation-status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"carricktoday.co.uk"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.carricktoday.co.uk/findit?action=showMap&amp;placeid=68739"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"citation-notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Got it"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"date-identified-sorting"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-09-07T00:00:00+00:00"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"date-identified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07 Sep 12"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"domain-authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"38.75"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"citation-value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unknown"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"moz-rank"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unknown"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"site-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Local Directory"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"listing-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Free Listing"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"seomoz-lookup-complete"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yes"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"business-name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John's business"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lungomare Zara, 1234 Giulianova"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"telephone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"03 12345678"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
             </span><span class="s2">"flags"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"customer"</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w">
                     </span><span class="s2">"new"</span><span class="p">:</span><span class="w">  </span><span class="p">[],</span><span class="w">
