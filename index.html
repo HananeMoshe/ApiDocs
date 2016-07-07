@@ -13,7 +13,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["php"]);
+          setupLanguages(["php","shell"]);
         });
       </script>
   </head>
@@ -29,6 +29,7 @@
       <img src="images/logo.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="php">php</a>
+              <a href="#" data-language-name="shell">shell</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -71,8 +72,8 @@
 <p>Generating a signature:</p>
 </blockquote>
 <pre><code class="highlight php"><span class="cp">&lt;?php</span>
-<span class="nb">define</span><span class="p">(</span><span class="s1">'API_KEY'</span><span class="p">,</span> <span class="s1">'[INSERT API KEY HERE]'</span><span class="p">);</span>
-<span class="nb">define</span><span class="p">(</span><span class="s1">'API_SECRET'</span><span class="p">,</span> <span class="s1">'[INSERT SECRET HERE]'</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">'API_KEY'</span><span class="p">,</span> <span class="s1">'&lt;INSERT_API_KEY&gt;'</span><span class="p">);</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">'API_SECRET'</span><span class="p">,</span> <span class="s1">'&lt;INSERT_API_SECRET&gt;'</span><span class="p">);</span>
 
 <span class="nv">$expires</span> <span class="o">=</span> <span class="p">(</span><span class="nx">int</span><span class="p">)</span> <span class="nb">gmdate</span><span class="p">(</span><span class="s1">'U'</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1800</span><span class="p">;</span> <span class="c1">// not more than 1800 seconds
 </span><span class="nv">$sig</span> <span class="o">=</span> <span class="nb">base64_encode</span><span class="p">(</span><span class="nb">hash_hmac</span><span class="p">(</span><span class="s1">'sha1'</span><span class="p">,</span> <span class="nx">API_KEY</span><span class="o">.</span><span class="nv">$expires</span><span class="p">,</span> <span class="nx">API_SECRET</span><span class="p">,</span> <span class="kc">true</span><span class="p">));</span>
@@ -200,12 +201,16 @@
 <span class="k">use</span> <span class="nx">BrightLocal\Api</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">BrightLocal\Batches\V4</span> <span class="k">as</span> <span class="nx">BatchApi</span><span class="p">;</span>
 
-<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="s1">'[INSERT_API_KEY]'</span><span class="p">,</span> <span class="s1">'[INSERT_API_SECRET]'</span><span class="p">);</span>
+<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="s1">'&lt;INSERT_API_KEY&gt;'</span><span class="p">,</span> <span class="s1">'&lt;INSERT_API_SECRET&gt;'</span><span class="p">);</span>
 <span class="nv">$batchApi</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BatchApi</span><span class="p">(</span><span class="nv">$api</span><span class="p">);</span>
 <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
 <span class="k">if</span> <span class="p">(</span><span class="nv">$result</span><span class="p">[</span><span class="s1">'success'</span><span class="p">])</span> <span class="p">{</span>
     <span class="nv">$batchId</span> <span class="o">=</span> <span class="nv">$result</span><span class="p">[</span><span class="s1">'batch-id'</span><span class="p">];</span>
 <span class="p">}</span>
+</code></pre>
+<pre><code class="highlight shell">curl -X POST <span class="se">\</span>
+    -F <span class="s1">'api-key=&lt;INSERT_API_KEY&gt;'</span> <span class="se">\</span>
+    https://tools.brightlocal.com/seo-tools/api/v4/batch
 </code></pre>
 
 <blockquote>
@@ -284,11 +289,16 @@
 <span class="k">use</span> <span class="nx">BrightLocal\Batches\V4</span> <span class="k">as</span> <span class="nx">BatchApi</span><span class="p">;</span>
 
 <span class="nv">$batchId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="s1">'[INSERT_API_KEY]'</span><span class="p">,</span> <span class="s1">'[INSERT_API_SECRET]'</span><span class="p">);</span>
+<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="s1">'&lt;INSERT_API_KEY&gt;'</span><span class="p">,</span> <span class="s1">'&lt;INSERT_API_SECRET&gt;'</span><span class="p">);</span>
 <span class="nv">$batchApi</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BatchApi</span><span class="p">(</span><span class="nv">$api</span><span class="p">);</span>
 <span class="k">if</span> <span class="p">(</span><span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">commit</span><span class="p">(</span><span class="nv">$batchId</span><span class="p">))</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Committed batch successfully.'</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
 <span class="p">}</span>
+</code></pre>
+<pre><code class="highlight shell">curl -X PUT <span class="se">\</span>
+    -d <span class="s1">'api-key=&lt;INSERT_API_KEY&gt;'</span> <span class="se">\</span>
+    -d <span class="s1">'batch-id=&lt;INSERT_BATCH_ID&gt;'</span> <span class="se">\</span>
+    https://tools.brightlocal.com/seo-tools/api/v4/batch
 </code></pre>
 
 <blockquote>
@@ -351,9 +361,11 @@
 <span class="k">use</span> <span class="nx">BrightLocal\Batches\V4</span> <span class="k">as</span> <span class="nx">BatchApi</span><span class="p">;</span>
 
 <span class="nv">$batchId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="nx">API_KEY</span><span class="p">,</span> <span class="nx">API_SECRET</span><span class="p">,</span> <span class="nx">API_ENDPOINT</span><span class="p">);</span>
+<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="s1">'&lt;INSERT_API_KEY&gt;'</span><span class="p">,</span> <span class="s1">'&lt;INSERT_API_SECRET&gt;'</span><span class="p">);</span>
 <span class="nv">$batchApi</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BatchApi</span><span class="p">(</span><span class="nv">$api</span><span class="p">);</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">get_results</span><span class="p">(</span><span class="nv">$batchId</span><span class="p">));</span>
+</code></pre>
+<pre><code class="highlight shell">curl <span class="s1">'https://tools.brightlocal.com/seo-tools/api/v4/batch?api-key=&lt;INSERT_API_KEY&gt;&amp;batch-id=&lt;INSERT_BATCH_ID&gt;'</span>
 </code></pre>
 
 <blockquote>
@@ -445,11 +457,13 @@
 <span class="k">use</span> <span class="nx">BrightLocal\Batches\V4</span> <span class="k">as</span> <span class="nx">BatchApi</span><span class="p">;</span>
 
 <span class="nv">$batchId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="nx">API_KEY</span><span class="p">,</span> <span class="nx">API_SECRET</span><span class="p">,</span> <span class="nx">API_ENDPOINT</span><span class="p">);</span>
+<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="s1">'&lt;INSERT_API_KEY&gt;'</span><span class="p">,</span> <span class="s1">'&lt;INSERT_API_SECRET&gt;'</span><span class="p">);</span>
 <span class="nv">$batchApi</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BatchApi</span><span class="p">(</span><span class="nv">$api</span><span class="p">);</span>
 <span class="k">if</span> <span class="p">(</span><span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="nv">$batchId</span><span class="p">))</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Successfully deleted batch.'</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
 <span class="p">}</span>
+</code></pre>
+<pre><code class="highlight shell">curl -X DELETE <span class="s1">'https://tools.brightlocal.com/seo-tools/api/v4/batch?api-key=&lt;INSERT_API_KEY&gt;&amp;batch-id=&lt;INSERT_BATCH_ID&gt;'</span>
 </code></pre>
 
 <blockquote>
@@ -503,11 +517,16 @@
 <span class="k">use</span> <span class="nx">BrightLocal\Batches\V4</span> <span class="k">as</span> <span class="nx">BatchApi</span><span class="p">;</span>
 
 <span class="nv">$batchId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="nx">API_KEY</span><span class="p">,</span> <span class="nx">API_SECRET</span><span class="p">,</span> <span class="nx">API_ENDPOINT</span><span class="p">);</span>
+<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="s1">'&lt;INSERT_API_KEY&gt;'</span><span class="p">,</span> <span class="s1">'&lt;INSERT_API_SECRET&gt;'</span><span class="p">);</span>
 <span class="nv">$batchApi</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BatchApi</span><span class="p">(</span><span class="nv">$api</span><span class="p">);</span>
 <span class="k">if</span> <span class="p">(</span><span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">stop</span><span class="p">(</span><span class="nv">$batchId</span><span class="p">))</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Successfully stopped batch.'</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
 <span class="p">}</span>
+</code></pre>
+<pre><code class="highlight shell">curl -X PUT -d <span class="se">\</span>
+    <span class="s1">'api-key=&lt;INSERT_API_KEY&gt;'</span> <span class="se">\</span>
+    -d <span class="s1">'batch-id=&lt;INSERT_BATCH_ID&gt;'</span> <span class="se">\</span>
+    https://tools.brightlocal.com/seo-tools/api/v4/batch/stop
 </code></pre>
 
 <blockquote>
@@ -570,27 +589,27 @@
         <span class="s1">'country'</span>         <span class="o">=&gt;</span> <span class="s1">'USA'</span><span class="p">,</span>
         <span class="s1">'google-location'</span> <span class="o">=&gt;</span> <span class="s1">'New York, NY'</span><span class="p">,</span>
         <span class="s1">'search-term'</span>     <span class="o">=&gt;</span> <span class="s1">'restaurant new york'</span><span class="p">,</span>
-        <span class="s1">'urls'</span>            <span class="o">=&gt;</span> <span class="s1">'["le-bernardin.com"]'</span><span class="p">,</span>
-        <span class="s1">'business-names'</span>  <span class="o">=&gt;</span> <span class="s1">'Le Bernardin'</span>
+        <span class="s1">'urls'</span>            <span class="o">=&gt;</span> <span class="nb">json_encode</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">'le-bernardin.com'</span><span class="p">)),</span>
+        <span class="s1">'business-names'</span>  <span class="o">=&gt;</span> <span class="nb">json_encode</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">'Le Bernardin'</span><span class="p">))</span>
     <span class="p">),</span>
     <span class="k">array</span><span class="p">(</span>
         <span class="s1">'search-engine'</span>   <span class="o">=&gt;</span> <span class="s1">'google'</span><span class="p">,</span>
         <span class="s1">'country'</span>         <span class="o">=&gt;</span> <span class="s1">'USA'</span><span class="p">,</span>
         <span class="s1">'google-location'</span> <span class="o">=&gt;</span> <span class="s1">'New York, NY'</span><span class="p">,</span>
         <span class="s1">'search-term'</span>     <span class="o">=&gt;</span> <span class="s1">'restaurant manhattan'</span><span class="p">,</span>
-        <span class="s1">'urls'</span>            <span class="o">=&gt;</span> <span class="s1">'["le-bernardin.com"]'</span><span class="p">,</span>
-        <span class="s1">'business-names'</span>  <span class="o">=&gt;</span> <span class="s1">'Le Bernardin'</span>
+        <span class="s1">'urls'</span>            <span class="o">=&gt;</span> <span class="nb">json_encode</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">'le-bernardin.com'</span><span class="p">)),</span>
+        <span class="s1">'business-names'</span>  <span class="o">=&gt;</span> <span class="nb">json_encode</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">'Le Bernardin'</span><span class="p">))</span>
     <span class="p">),</span>
     <span class="k">array</span><span class="p">(</span>
         <span class="s1">'search-engine'</span>   <span class="o">=&gt;</span> <span class="s1">'google'</span><span class="p">,</span>
         <span class="s1">'country'</span>         <span class="o">=&gt;</span> <span class="s1">'USA'</span><span class="p">,</span>
         <span class="s1">'google-location'</span> <span class="o">=&gt;</span> <span class="s1">'New York, NY'</span><span class="p">,</span>
         <span class="s1">'search-term'</span>     <span class="o">=&gt;</span> <span class="s1">'restaurant 10019'</span><span class="p">,</span>
-        <span class="s1">'urls'</span>            <span class="o">=&gt;</span> <span class="s1">'["le-bernardin.com"]'</span><span class="p">,</span>
-        <span class="s1">'business-names'</span>  <span class="o">=&gt;</span> <span class="s1">'Le Bernardin'</span>
+        <span class="s1">'urls'</span>            <span class="o">=&gt;</span> <span class="nb">json_encode</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">'le-bernardin.com'</span><span class="p">)),</span>
+        <span class="s1">'business-names'</span>  <span class="o">=&gt;</span> <span class="nb">json_encode</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">'Le Bernardin'</span><span class="p">))</span>
     <span class="p">)</span>
 <span class="p">);</span>
-<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="nx">API_KEY</span><span class="p">,</span> <span class="nx">API_SECRET</span><span class="p">,</span> <span class="nx">API_ENDPOINT</span><span class="p">);</span>
+<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="s1">'&lt;INSERT_API_KEY&gt;'</span><span class="p">,</span> <span class="s1">'&lt;INSERT_API_SECRET&gt;'</span><span class="p">);</span>
 <span class="nv">$batchApi</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BatchApi</span><span class="p">(</span><span class="nv">$api</span><span class="p">);</span>
 <span class="nv">$batchId</span> <span class="o">=</span> <span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
 <span class="k">if</span> <span class="p">(</span><span class="nv">$batchId</span><span class="p">)</span> <span class="p">{</span>
@@ -618,6 +637,17 @@
         <span class="nb">print_r</span><span class="p">(</span><span class="nv">$results</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
+</code></pre>
+<pre><code class="highlight shell">curl -X POST <span class="se">\</span>
+    -F <span class="s1">'api-key=&lt;INSERT_API_KEY&gt;'</span> <span class="se">\</span>
+    -F <span class="s1">'batch-id=&lt;INSERT_BATCH_ID&gt;'</span> <span class="se">\</span>
+    -F <span class="s1">'search-engine=google'</span> <span class="se">\</span>
+    -F <span class="s1">'country=USA'</span> <span class="se">\</span>
+    -F <span class="s1">'google-location=new+york,ny'</span> <span class="se">\</span>
+    -F <span class="s1">'search-term=restaurant'</span> <span class="se">\</span>
+    -F <span class="s1">'urls=["jean-georgesrestaurant.com"]'</span> <span class="se">\</span>
+    -F <span class="s1">'business-names=["Jean-Georges Restaurant"]'</span> <span class="se">\</span>
+    https://tools.brightlocal.com/seo-tools/api/v4/rankings/search
 </code></pre>
 
 <blockquote>
@@ -743,27 +773,25 @@
     <span class="s1">'restaurant manhattan'</span><span class="p">,</span>
     <span class="s1">'restaurant 10019'</span>
 <span class="p">);</span>
-<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="nx">API_KEY</span><span class="p">,</span> <span class="nx">API_SECRET</span><span class="p">,</span> <span class="nx">API_ENDPOINT</span><span class="p">);</span>
+<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="s1">'&lt;INSERT_API_KEY&gt;'</span><span class="p">,</span> <span class="s1">'&lt;INSERT_API_SECRET&gt;'</span><span class="p">);</span>
 <span class="nv">$batchApi</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BatchApi</span><span class="p">(</span><span class="nv">$api</span><span class="p">);</span>
 <span class="nv">$batchId</span> <span class="o">=</span> <span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
 <span class="k">if</span> <span class="p">(</span><span class="nv">$batchId</span><span class="p">)</span> <span class="p">{</span>
     <span class="nb">printf</span><span class="p">(</span><span class="s1">'Created batch ID %d%s'</span><span class="p">,</span> <span class="nv">$batchId</span><span class="p">,</span> <span class="nx">PHP_EOL</span><span class="p">);</span>
-    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$searches</span> <span class="k">as</span> <span class="nv">$search</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">call</span><span class="p">(</span>
-            <span class="s1">'/v4/rankings/bulk-search'</span><span class="p">,</span>
-            <span class="k">array</span><span class="p">(</span>
-                <span class="s1">'batch-id'</span> <span class="o">=&gt;</span> <span class="nv">$batchId</span><span class="p">,</span>
-                <span class="s1">'search-engine'</span>   <span class="o">=&gt;</span> <span class="s1">'google'</span><span class="p">,</span>
-                <span class="s1">'country'</span>         <span class="o">=&gt;</span> <span class="s1">'USA'</span><span class="p">,</span>
-                <span class="s1">'google-location'</span> <span class="o">=&gt;</span> <span class="s1">'New York, NY'</span><span class="p">,</span>
-                <span class="s1">'search-term'</span>     <span class="o">=&gt;</span> <span class="nv">$search</span><span class="p">,</span>
-                <span class="s1">'urls'</span>            <span class="o">=&gt;</span> <span class="s1">'["le-bernardin.com"]'</span><span class="p">,</span>
-                <span class="s1">'business-names'</span>  <span class="o">=&gt;</span> <span class="s1">'Le Bernardin'</span>
-            <span class="p">)</span>
-        <span class="p">);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nv">$result</span><span class="p">[</span><span class="s1">'success'</span><span class="p">])</span> <span class="p">{</span>
-            <span class="nb">printf</span><span class="p">(</span><span class="s1">'Added job with ID %d%s'</span><span class="p">,</span> <span class="nv">$result</span><span class="p">[</span><span class="s1">'job-id'</span><span class="p">],</span> <span class="nx">PHP_EOL</span><span class="p">);</span>
-        <span class="p">}</span>
+    <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$api</span><span class="o">-&gt;</span><span class="na">call</span><span class="p">(</span>
+        <span class="s1">'/v4/rankings/bulk-search'</span><span class="p">,</span>
+        <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'batch-id'</span> <span class="o">=&gt;</span> <span class="nv">$batchId</span><span class="p">,</span>
+            <span class="s1">'search-engine'</span>   <span class="o">=&gt;</span> <span class="s1">'google'</span><span class="p">,</span>
+            <span class="s1">'country'</span>         <span class="o">=&gt;</span> <span class="s1">'USA'</span><span class="p">,</span>
+            <span class="s1">'google-location'</span> <span class="o">=&gt;</span> <span class="s1">'New York, NY'</span><span class="p">,</span>
+            <span class="s1">'search-terms'</span>    <span class="o">=&gt;</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$searches</span><span class="p">),</span>
+            <span class="s1">'urls'</span>            <span class="o">=&gt;</span> <span class="nb">json_encode</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">'le-bernardin.com'</span><span class="p">)),</span>
+            <span class="s1">'business-names'</span>  <span class="o">=&gt;</span> <span class="nb">json_encode</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">'Le Bernardin'</span><span class="p">))</span>
+        <span class="p">)</span>
+    <span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$result</span><span class="p">[</span><span class="s1">'success'</span><span class="p">])</span> <span class="p">{</span>
+        <span class="nb">printf</span><span class="p">(</span><span class="s1">'Added job with ID %d%s'</span><span class="p">,</span> <span class="nv">$result</span><span class="p">[</span><span class="s1">'job-id'</span><span class="p">],</span> <span class="nx">PHP_EOL</span><span class="p">);</span>
     <span class="p">}</span>
     <span class="k">if</span> <span class="p">(</span><span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">commit</span><span class="p">(</span><span class="nv">$batchId</span><span class="p">))</span> <span class="p">{</span>
         <span class="k">echo</span> <span class="s1">'Committed batch successfully.'</span><span class="o">.</span><span class="nx">PHP_EOL</span><span class="p">;</span>
@@ -777,6 +805,17 @@
         <span class="nb">print_r</span><span class="p">(</span><span class="nv">$results</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
+</code></pre>
+<pre><code class="highlight shell">curl -X POST <span class="se">\</span>
+    -F <span class="s1">'api-key=&lt;INSERT_API_KEY&gt;'</span> <span class="se">\</span>
+    -F <span class="s1">'batch-id=&lt;INSERT_BATCH_ID&gt;'</span> <span class="se">\</span>
+    -F <span class="s1">'search-engine=google'</span> <span class="se">\</span>
+    -F <span class="s1">'country=USA'</span> <span class="se">\</span>
+    -F <span class="s1">'google-location=new+york,ny'</span> <span class="se">\</span>
+    -F <span class="s1">'search-terms=["restaurant","restaurant+new+york","restaurant+manhattan"]'</span> <span class="se">\</span>
+    -F <span class="s1">'urls=["jean-georgesrestaurant.com"]'</span> <span class="se">\</span>
+    -F <span class="s1">'business-names=["Jean-Georges Restaurant"]'</span> <span class="se">\</span>
+    https://tools.brightlocal.com/seo-tools/api/v4/rankings/bulk-search
 </code></pre>
 
 <blockquote>
@@ -1297,7 +1336,7 @@
     <span class="s1">'https://plus.google.com/117313296997732479889/about?hl=en'</span><span class="p">,</span>
     <span class="s1">'https://plus.google.com/111550668382222753542/about?hl=en'</span>
 <span class="p">);</span>
-<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="nx">API_KEY</span><span class="p">,</span> <span class="nx">API_SECRET</span><span class="p">,</span> <span class="nx">API_ENDPOINT</span><span class="p">);</span>
+<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="s1">'&lt;INSERT_API_KEY&gt;'</span><span class="p">,</span> <span class="s1">'&lt;INSERT_API_SECRET&gt;'</span><span class="p">);</span>
 <span class="nv">$batchApi</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BatchApi</span><span class="p">(</span><span class="nv">$api</span><span class="p">);</span>
 <span class="nv">$batchId</span> <span class="o">=</span> <span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
 <span class="k">if</span> <span class="p">(</span><span class="nv">$batchId</span><span class="p">)</span> <span class="p">{</span>
@@ -1415,7 +1454,7 @@
 <span class="k">use</span> <span class="nx">BrightLocal\Api</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">BrightLocal\Batches\V4</span> <span class="k">as</span> <span class="nx">BatchApi</span><span class="p">;</span>
 
-<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="nx">API_KEY</span><span class="p">,</span> <span class="nx">API_SECRET</span><span class="p">,</span> <span class="nx">API_ENDPOINT</span><span class="p">);</span>
+<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="s1">'&lt;INSERT_API_KEY&gt;'</span><span class="p">,</span> <span class="s1">'&lt;INSERT_API_SECRET&gt;'</span><span class="p">);</span>
 <span class="nv">$batchApi</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BatchApi</span><span class="p">(</span><span class="nv">$api</span><span class="p">);</span>
 <span class="nv">$batchId</span> <span class="o">=</span> <span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
 <span class="k">if</span> <span class="p">(</span><span class="nv">$batchId</span><span class="p">)</span> <span class="p">{</span>
@@ -1565,7 +1604,7 @@
 <span class="k">use</span> <span class="nx">BrightLocal\Api</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">BrightLocal\Batches\V4</span> <span class="k">as</span> <span class="nx">BatchApi</span><span class="p">;</span>
 
-<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="nx">API_KEY</span><span class="p">,</span> <span class="nx">API_SECRET</span><span class="p">,</span> <span class="nx">API_ENDPOINT</span><span class="p">);</span>
+<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="s1">'&lt;INSERT_API_KEY&gt;'</span><span class="p">,</span> <span class="s1">'&lt;INSERT_API_SECRET&gt;'</span><span class="p">);</span>
 <span class="nv">$batchApi</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BatchApi</span><span class="p">(</span><span class="nv">$api</span><span class="p">);</span>
 <span class="nv">$batchId</span> <span class="o">=</span> <span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
 <span class="k">if</span> <span class="p">(</span><span class="nv">$batchId</span><span class="p">)</span> <span class="p">{</span>
@@ -1664,7 +1703,7 @@
 <span class="k">use</span> <span class="nx">BrightLocal\Api</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">BrightLocal\Batches\V4</span> <span class="k">as</span> <span class="nx">BatchApi</span><span class="p">;</span>
 
-<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="nx">API_KEY</span><span class="p">,</span> <span class="nx">API_SECRET</span><span class="p">,</span> <span class="nx">API_ENDPOINT</span><span class="p">);</span>
+<span class="nv">$api</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Api</span><span class="p">(</span><span class="s1">'&lt;INSERT_API_KEY&gt;'</span><span class="p">,</span> <span class="s1">'&lt;INSERT_API_SECRET&gt;'</span><span class="p">);</span>
 <span class="nv">$batchApi</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BatchApi</span><span class="p">(</span><span class="nv">$api</span><span class="p">);</span>
 <span class="nv">$batchId</span> <span class="o">=</span> <span class="nv">$batchApi</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
 <span class="k">if</span> <span class="p">(</span><span class="nv">$batchId</span><span class="p">)</span> <span class="p">{</span>
@@ -2453,10 +2492,10 @@
             </span><span class="s2">"extra-business_categories"</span><span class="p">:[</span><span class="w">
                 </span><span class="s2">"marketing"</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="s2">"working-hours"</span><span class="p">:[</span><span class="w">
-                </span><span class="s2">"mon_start"</span><span class="err">:</span><span class="s2">"9 a.m."</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"mon_end"</span><span class="err">:</span><span class="s2">"7 p.m."</span><span class="p">,</span><span class="w">
-            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"working-hours"</span><span class="p">:{</span><span class="w">
+                </span><span class="s2">"mon_start"</span><span class="p">:</span><span class="s2">"9 a.m."</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"mon_end"</span><span class="p">:</span><span class="s2">"7 p.m."</span><span class="w">
+            </span><span class="p">},</span><span class="w">
             </span><span class="s2">"payment-methods-accepted"</span><span class="p">:[</span><span class="w">
                 </span><span class="s2">"visa"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"paypal"</span><span class="w">
@@ -2891,24 +2930,24 @@
                 </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Weekly"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"day_of_week"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thursday"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"day_of_month"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="err">}</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test 2"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Weekly"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"day_of_week"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wednesday"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"day_of_month"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="err">}</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test 3"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Weekly"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"day_of_week"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wednesday"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"day_of_month"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="err">}</span><span class="w">
+                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">    
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -2962,24 +3001,24 @@
                 </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Weekly"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"day_of_week"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thursday"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"day_of_month"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="err">}</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test 2"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Weekly"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"day_of_week"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wednesday"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"day_of_month"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="err">}</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test 3"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Weekly"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"day_of_week"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wednesday"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"day_of_month"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="err">}</span><span class="w">
+                </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">    
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -5471,6 +5510,10 @@
 <tr>
 <td>citations</td>
 <td><span class="label label-required">Required</span> JSON Array. If autoselect is &#39;Y&rsquo; parameter becomes non-required. List of sites you require listings for.</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>Provide instructions to our submissions team with specifics about how you&rsquo;d like your campaign handled.</td>
 </tr>
 </tbody></table>
 
@@ -8027,12 +8070,36 @@
 <td></td>
 </tr>
 <tr>
+<td>411com</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>aboutus</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td><s>acxiom</s></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td></td>
 <td></td>
 <td>No longer available</td>
+</tr>
+<tr>
+<td>agreatertown</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td><s>allpages</s></td>
@@ -8061,9 +8128,33 @@
 <tr>
 <td>bbb</td>
 <td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>bizdays</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bizexposed</td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>bizvotes</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -8091,7 +8182,39 @@
 <td></td>
 </tr>
 <tr>
+<td>callupcontact</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>cbsyellowpages</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
 <td>chamberofcommerce</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>checkmyreview</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>cityfos</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td><span class="yes">Yes</span></td>
@@ -8163,9 +8286,41 @@
 <td></td>
 </tr>
 <tr>
+<td>ebusinesspages</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>elocal</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>enrollbusiness</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
 <td>expressupdate</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>ezlocal</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -8203,9 +8358,33 @@
 <td></td>
 </tr>
 <tr>
+<td>finduslocal</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
 <td>foursquare</td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>freebusinessdirectory</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>garagecommerce</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -8275,7 +8454,23 @@
 <td></td>
 </tr>
 <tr>
+<td>linkbyme</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
 <td>linkedin</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>linktownwhas11</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td><span class="yes">Yes</span></td>
@@ -8307,12 +8502,12 @@
 <td></td>
 </tr>
 <tr>
-<td>manta</td>
+<td><s>manta</s></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
-<td>Currently causing issues in grabbing profile details</td>
+<td>No longer available</td>
 </tr>
 <tr>
 <td>mapquest</td>
@@ -8331,6 +8526,14 @@
 <td></td>
 </tr>
 <tr>
+<td>misterwhat</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
 <td><s>mojopages</s></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -8339,7 +8542,23 @@
 <td>No longer available</td>
 </tr>
 <tr>
+<td>mywebyellow</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
 <td>neustarlocaleze</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>nexport</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td><span class="yes">Yes</span></td>
@@ -8435,6 +8654,14 @@
 <td></td>
 </tr>
 <tr>
+<td>wfaa</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
 <td>whitepages</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -8486,6 +8713,14 @@
 <td>yellowbot</td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>yellowee</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -8569,7 +8804,23 @@
 <td></td>
 </tr>
 <tr>
+<td>aboutus</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>accessplace</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>bizexposed</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td><span class="yes">Yes</span></td>
@@ -8617,6 +8868,14 @@
 <td>No longer available</td>
 </tr>
 <tr>
+<td>callupcontact</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
 <td>cityvisitor</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -8639,6 +8898,14 @@
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td>Currently causing issues in grabbing profile details</td>
+</tr>
+<tr>
+<td>enrollbusiness</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
 </tr>
 <tr>
 <td>facebook</td>
@@ -8705,6 +8972,14 @@
 <td></td>
 </tr>
 <tr>
+<td>ibegin</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
 <td>independent</td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
@@ -8737,12 +9012,12 @@
 <td>No longer available</td>
 </tr>
 <tr>
-<td>manta</td>
+<td><s>manta</s></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
-<td>Currently causing issues in grabbing profile details</td>
+<td>No longer available</td>
 </tr>
 <tr>
 <td>misterwhat</td>
@@ -9031,6 +9306,14 @@
 <td></td>
 </tr>
 <tr>
+<td>bizexposed</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
 <td>bloo</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -9055,6 +9338,14 @@
 <td>No longer available</td>
 </tr>
 <tr>
+<td>callupcontact</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
 <td>cylex</td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
@@ -9077,6 +9368,14 @@
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td>No longer available</td>
+</tr>
+<tr>
+<td>enrollbusiness</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
 </tr>
 <tr>
 <td>facebook</td>
@@ -9183,12 +9482,20 @@
 <td></td>
 </tr>
 <tr>
-<td>manta</td>
+<td><s>manta</s></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
-<td>Currently causing issues in grabbing profile details</td>
+<td>No longer available</td>
+</tr>
+<tr>
+<td>misterwhat</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
 </tr>
 <tr>
 <td>nationaldirectory</td>
@@ -9405,6 +9712,14 @@
 <td></td>
 </tr>
 <tr>
+<td>411com</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
 <td><s>allpages</s></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
@@ -9414,6 +9729,14 @@
 </tr>
 <tr>
 <td>bbb</td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>bizexposed</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td><span class="yes">Yes</span></td>
@@ -9434,6 +9757,14 @@
 <td></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
+<td></td>
+</tr>
+<tr>
+<td>callupcontact</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
@@ -9494,6 +9825,14 @@
 </tr>
 <tr>
 <td>directorycentral</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+</tr>
+<tr>
+<td>enrollbusiness</td>
 <td><span class="yes">Yes</span></td>
 <td></td>
 <td><span class="yes">Yes</span></td>
@@ -9581,12 +9920,20 @@
 <td></td>
 </tr>
 <tr>
-<td>manta</td>
+<td><s>manta</s></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
 <td><span class="yes">Yes</span></td>
-<td>Currently causing issues in grabbing profile details</td>
+<td>No longer available</td>
+</tr>
+<tr>
+<td>misterwhat</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
+<td></td>
 </tr>
 <tr>
 <td>n49</td>
@@ -9714,6 +10061,14 @@
 <td></td>
 <td><span class="yes">Yes</span></td>
 <td></td>
+<td></td>
+</tr>
+<tr>
+<td>yellowee</td>
+<td><span class="yes">Yes</span></td>
+<td></td>
+<td><span class="yes">Yes</span></td>
+<td><span class="yes">Yes</span></td>
 <td></td>
 </tr>
 <tr>
@@ -12144,6 +12499,7 @@
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="php">php</a>
+                <a href="#" data-language-name="shell">shell</a>
           </div>
       </div>
     </div>
