@@ -5413,11 +5413,28 @@
             </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bingplaces will send you verification PIN at your registered postal address."</span><span class="p">,</span><span class="w">
             </span><span class="s2">"no_update"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"no_photos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"part_of_yext_network"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"quick_listing"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"secondary_campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"To Do"</span><span class="w">
         </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"aggregators"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"citation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"factual"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N/A"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aggregators"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"phone_verification"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N/A"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"client_verification"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N/A"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Factual will only contact the business if key data doesn’t align"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"no_update"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N/A"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"no_photos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N/A"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"part_of_yext_network"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N/A"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"quick_listing"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N/A"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"secondary_campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"To Do"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -5501,7 +5518,7 @@
 </tr>
 <tr>
 <td>package_id</td>
-<td><span class="label label-required">Required</span> CB package id corresponding to the number of ordered credits: &lsquo;cb10&rsquo; for 10 citations, &#39;cb15&rsquo; for 15, then 25, 30, 50, 75, 100</td>
+<td><span class="label label-required">Required</span> CB package id corresponding to the number of ordered credits: &lsquo;cb10&rsquo; for 10 citations, &#39;cb15&rsquo; for 15, then 25, 30, 50, 75, 100. To use only aggregators and ignore citations or package_id, please use &#39;cb0&rsquo; package only.</td>
 </tr>
 <tr>
 <td>autoselect</td>
@@ -5509,7 +5526,15 @@
 </tr>
 <tr>
 <td>citations</td>
-<td><span class="label label-required">Required</span> JSON Array. If autoselect is &#39;Y&rsquo; parameter becomes non-required. List of sites you require listings for.</td>
+<td>JSON Array. List of sites you require listings for. You can leave citations empty for auto selecting citations.</td>
+</tr>
+<tr>
+<td>remove-duplicates</td>
+<td>String. Possible values &#39;N&rsquo; or &#39;Y&rsquo;. Default &#39;N&rsquo;. Find and Remove Duplicate Listings</td>
+</tr>
+<tr>
+<td>aggregators</td>
+<td>JSON Array. List of aggregators you require listings for. Possible values are &#39;factual&rsquo;, &#39;infogroup&rsquo;, &#39;neustar&rsquo;, &#39;axciom&rsquo; for USA. The only possible value for all non USA countries is &#39;factual&rsquo;.</td>
 </tr>
 <tr>
 <td>notes</td>
@@ -5553,7 +5578,25 @@
                         </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt; 10/100"</span><span class="p">,</span><span class="w">
                         </span><span class="s2">"citation_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"High"</span><span class="w">
                     </span><span class="p">}</span><span class="w">
-                </span><span class="p">]</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"aggregators"</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"infogroup"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Live"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"site_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aggregator"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"citation_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"infogroup.com"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NA"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"citation_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NA"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"factual"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Updated"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"site_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aggregator"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"citation_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"factual.com"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NA"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"citation_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NA"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">                
             </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -5619,22 +5662,40 @@
             </span><span class="p">],</span><span class="w">
             </span><span class="s2">"citations"</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"site"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ezlocal.com"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"General Directory"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt; 10/100"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"To Do"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Site issues a temporary password for accessing account - check email account post submission."</span><span class="w">
+                    </span><span class="s2">"site"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ezlocal.com"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"General Directory"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt; 10/100"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"To Do"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Site issues a temporary password for accessing account - check email account post submission."</span><span class="w">
                 </span><span class="p">},</span><span class="w">
                 </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"site"</span><span class="p">:</span><span class="w"> </span><span class="s2">"insiderpages.com"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"General Directory"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt; 10/100"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"To Do"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+                    </span><span class="s2">"site"</span><span class="p">:</span><span class="w"> </span><span class="s2">"insiderpages.com"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"General Directory"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt; 10/100"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"To Do"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"aggregators"</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"site"</span><span class="p">:</span><span class="w"> </span><span class="s2">"infogroup"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aggregator"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NA"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"To Do"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"www.dropbox.com/short-url"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Site issues a temporary password for accessing account - check email account post submission."</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"site"</span><span class="p">:</span><span class="w"> </span><span class="s2">"factual"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aggregator"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"domain_authority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NA"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"To Do"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">            
             </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
             </span><span class="s2">"urls"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"interactive_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https:\/\/tools.brightlocal.com\/seo-tools\/admin\/cb\/campaign\/view\/5"</span><span class="p">,</span><span class="w">
