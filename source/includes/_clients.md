@@ -13,7 +13,7 @@ use BrightLocal\Api;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v1/clients-and-locations/clients/', [	   
     'name'                 => 'Le Bernardin',               
-    'company-url'          => 'http://www.example.com',
+    'company-url'          => 'le-bernardin.com',
     'business-category-id' =>  791    
 ]);
 print_r($success);
@@ -24,9 +24,9 @@ curl -X POST \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'name=<INSERT_NAME>' \
- -d 'company-url=<INSERT_COMPANY_URL>'\
- -d 'business-category-id=<INSERT_BUSINESS_CATEGORY_ID>'\ 
+ -d 'name=Le Bernardin' \
+ -d 'company-url=le-bernardin.com' \
+ -d 'business-category-id=791' \ 
  https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
 ```
 
@@ -72,7 +72,7 @@ use BrightLocal\Api;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->put('v1/clients-and-locations/clients/', [
     'name'                 => 'Le Bernardin',               
-    'company-url'          => 'http://www.example.com',
+    'company-url'          => 'le-bernardin.com',
     'business-category-id' =>  791    
 ]);
 print_r($success);
@@ -83,9 +83,9 @@ curl -X PUT \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'name=<INSERT_NAME>' \
- -d 'company-url=<INSERT_COMPANY_URL>'\
- -d 'business-category-id=<INSERT_BUSINESS_CATEGORY_ID>'\
+ -d 'name=Le Bernardin' \
+ -d 'company-url=le-bernardin.com' \
+ -d 'business-category-id=<INSERT_BUSINESS_CATEGORY_ID>' \
    https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/
 ```
 
@@ -128,8 +128,8 @@ use BrightLocal\Api;
 
 $clientId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->delete('v1/clients-and-locations/clients/' .$clientId);
-if($success) {
+$result = $api->delete('v1/clients-and-locations/clients/' . $clientId);
+if (!empty($result['success'])) {
 	echo 'Successfully deleted client.' . PHP_EOL;
 }
 ```
@@ -191,7 +191,7 @@ Get extended details for a specific client.
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/:id`
+`GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/clients/<clientId>`
 
 ### Query Parameters
 
@@ -214,7 +214,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $results = $api->call('v1/clients-and-locations/clients/search', [   
- 'q' => 'My Sample Query'    
+    'q' => 'BrightLocal'    
 ]);
 print_r($results);
 ```

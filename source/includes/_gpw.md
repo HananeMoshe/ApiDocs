@@ -12,19 +12,19 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v4/gpw/add', [
-    'report_name'    => 'Sample Google Plus Report', 
-    'business_names' => 'Le Bernardin',
-    'schedule'       => 'Adhoc',
-    'day_of_month'   => '2',
-    'report_type'    => 'with',
-    'address1'       => '155 West 51st Street',
+    'report_name'    => 'Le Bernardin', 
+	'business_names' => 'Le Bernardin',
+	'schedule'       => 'Adhoc',
+	'day_of_month'   => '2',
+	'report_type'    => 'with',
+	'address1'       => '155 West 51st Street',
     'address2'       => '',      
     'city'           => 'New York',
-    'state_code'     => 'NY',
-    'postcode'       => '10019',	
-    'phone_number'   => '+1 212-554-1515',
-    'country'        => 'USA',
-    'search_terms'   => '["restaurant manhattan","cafe new york"]'  
+	'state_code'     => 'NY',
+	'postcode'       => '10019',	
+	'phone_number'   => '+1 212-554-1515',
+	'country'        => 'USA',
+	'search_terms'   => '["restaurant manhattan","cafe new york"]'  
 ]);
 print_r($success);
 ```
@@ -34,7 +34,7 @@ curl -X POST \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \ 
- -d 'report_name=Sample Google Plus Report' \
+ -d 'report_name=Le Bernardin' \
  -d 'business_names=Le Bernardin' \
  -d 'schedule=Adhoc' \
  -d 'day_of_month=2' \
@@ -144,7 +144,7 @@ run | One of Yes or No. Runs the report after adding. Defaults to Yes.
 
 ### HTTP Request
 
-`PUT https://tools.brightlocal.com/seo-tools/api/v4/gpw/[reportId]`
+`PUT https://tools.brightlocal.com/seo-tools/api/v4/gpw/<reportId>`
 
 ### Query Parameters
 
@@ -188,7 +188,7 @@ use BrightLocal\Api;
 
 $reportId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('v4/gpw/' .$reportId);
+$results = $api->get('v4/gpw/' . $reportId);
 print_r($results);
 ```
 
@@ -237,7 +237,7 @@ curl -X GET \
           ],
           "last_run_id": "626",
           "is_public": "Yes",
-          "public_key": "9e4356696cadcbc1c3ed87cc8103d4be5d09f04c",
+          "public_key": "<hidden>",
           "status": "Enabled"
       }
 }
@@ -256,7 +256,7 @@ curl -X GET \
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v4/gpw/[reportId]`
+`GET https://tools.brightlocal.com/seo-tools/api/v4/gpw/<reportId>`
 
 ### Query Parameters
 
@@ -278,8 +278,8 @@ use BrightLocal\Api;
 
 $reportId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->delete('v4/gpw/' .$reportId);
-if($success) {
+$result = $api->delete('v4/gpw/' . $reportId);
+if (!empty($result['success'])) {
 	echo 'Successfully deleted report.' . PHP_EOL;
 }
 print_r($success);
@@ -314,7 +314,7 @@ curl -X DELETE \
 
 ### HTTP Request
 
-`DELETE https://tools.brightlocal.com/seo-tools/api/v4/gpw/[reportId]`
+`DELETE https://tools.brightlocal.com/seo-tools/api/v4/gpw/<reportId>`
 
 ### Query Parameters
 
@@ -481,7 +481,7 @@ use BrightLocal\Api;
 
 $reportId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$results = $api->get('v4/gpw/' .$reportId. '/results');
+$results = $api->get('v4/gpw/' . $reportId . '/results');
 print_r($results);
 ```
 
@@ -1035,7 +1035,7 @@ curl -X GET \
     },
     "urls": {
       "report_url": "https://tools.brightlocal.com/seo-tools/admin/gpw/reports/view/275",
-      "wl_url": "http://local-marketing-reports.com/google-plus-reports/b8ff7ea94bb0e1b79cf437719afc7126c20a3295/275"
+      "wl_url": "http://local-marketing-reports.com/google-plus-reports/<hidden>/275"
     }
   }
 }
@@ -1056,7 +1056,7 @@ Return report URLs and raw data.
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v4/gpw/[reportId]/results`
+`GET https://tools.brightlocal.com/seo-tools/api/v4/gpw/<reportId>/results`
 
 ### Query Parameters
 

@@ -12,14 +12,14 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v4/rf/add', [
-    'report-name'       => 'Sample Review Report', 
-    'business-name'     => 'Le Bernardin',
-    'contact-telephone' => '+1 212-554-1515',
-    'address1'          => '155 West 51st Street',
+    'report-name'       => 'Le Bernardin', 
+	'business-name'     => 'Le Bernardin',
+	'contact-telephone' => '+1 212-554-1515',
+	'address1'          => '155 West 51st Street',
     'address2'          => '',      
     'city'              => 'New York',
-    'postcode'          => '10019',
-    'country'           => 'USA' // USA only    
+	'postcode'          => '10019',
+	'country'           => 'USA' // USA only    
 ]);
 print_r($success);
 ```
@@ -29,7 +29,7 @@ curl -X POST \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \ 
- -d 'report-name=Sample Review Report' \
+ -d 'report-name=Le Bernardin' \
  -d 'business-name=Le Bernardin' \
  -d 'contact-telephone=+1 212-554-1515' \
  -d 'address1=155 West 51st Street' \ 
@@ -130,7 +130,7 @@ $reportId = 1;
 $api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
 $success = $api->put('v4/rf/' .$reportId, [
     'business-name'     => 'Le Bernardin',
-    'contact-telephone' => '+1 212-554-1515'
+	'contact-telephone' => '+1 212-554-1515'
 ]);
 print_r($success);
 ```
@@ -164,7 +164,7 @@ echo json_encode(array(
 
 ### HTTP Request
 
-`PUT https://tools.brightlocal.com/seo-tools/api/v4/rf/[reportId]`
+`PUT https://tools.brightlocal.com/seo-tools/api/v4/rf/<reportId>`
 
 ### Query Parameters
 
@@ -322,10 +322,10 @@ curl -X GET \
             }
         },
         "urls": {
-            "interactive_url": "https://dev-ed.brightlocal.com/seo-tools/admin/rf/tracker/276",
-            "pdf_url": "https://dev-ed.brightlocal.com/seo-tools/admin/rf/pdf-report/276",
-            "public_interactive_url": "http://dev-ed.local-marketing-reports.com/review-reports/46ae0487db4f2f5c749e683d41b7571974c86f8c/tracker/276",
-            "public_pdf_url": "http://dev-ed.local-marketing-reports.com/review-reports/46ae0487db4f2f5c749e683d41b7571974c86f8c/276.pdf"
+            "interactive_url": "https://tools.brightlocal.com/seo-tools/admin/rf/tracker/276",
+            "pdf_url": "https://tools.brightlocal.com/seo-tools/admin/rf/pdf-report/276",
+            "public_interactive_url": "http://www.local-marketing-reports.com/review-reports/<hidden>/tracker/276",
+            "public_pdf_url": "http://www.local-marketing-reports.com/review-reports/<hidden>/276.pdf"
         }
     }
 }
@@ -344,7 +344,7 @@ curl -X GET \
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/[reportId]`
+`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/<reportId>`
 
 ### Query Parameters
 
@@ -413,7 +413,7 @@ curl -X DELETE \
 
 ### HTTP Request
 
-`DELETE https://tools.brightlocal.com/seo-tools/api/v4/rf/[reportId]`
+`DELETE https://tools.brightlocal.com/seo-tools/api/v4/rf/<reportId>`
 
 ### Query Parameters
 
@@ -527,7 +527,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $results = $api->get('v4/rf/search', [
-    'q' => 'My Sample Query'	 
+    'q' => 'Le Bernardin'	 
 ]);
 print_r($results);
 ```
@@ -682,7 +682,7 @@ Fetch all reviews associated with a report.
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/[reportId]/reviews`
+`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/<reportId>/reviews`
 
 ### Query Parameters
 
@@ -755,7 +755,7 @@ curl -X GET \
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/[reportId]/reviews/count`
+`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/<reportId>/reviews/count`
 
 ### Query Parameters
 
@@ -816,7 +816,7 @@ Get count and percentage of new reviews since last report run.
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/[reportId]/reviews/growth`
+`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/<reportId>/reviews/growth`
 
 ### Query Parameters
 
@@ -987,7 +987,7 @@ Get a list of directories associated with a report. Results contain directory de
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/[reportId]/directories`
+`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/<reportId>/directories`
 
 ### Query Parameters
 
@@ -1073,7 +1073,7 @@ curl -X GET \
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/[reportId]/directories/stats`
+`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/<reportId>/directories/stats`
 
 Fetch stats showing average rating and review count for every directory in a given report.
 
@@ -1140,7 +1140,7 @@ Get count of reviews for each star rating for a given report.
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/[reportId]/stars/count`
+`GET https://tools.brightlocal.com/seo-tools/api/v4/rf/<reportId>/stars/count`
 
 ### Query Parameters
 

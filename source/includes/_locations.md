@@ -13,14 +13,14 @@ use BrightLocal\Api;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v1/clients-and-locations/locations/', [
     'name'                 => 'Le Bernardin',    
-    'url'                  => 'http://www.example.com',
-    'business-category-id' =>  605,
-    'country'              => 'USA', // 3 letter iso code
-    'address1'             => '155 West 51st Street',
+    'url'                  => 'le-bernardin.com',
+	'business-category-id' =>  605,
+	'country'              => 'USA', // 3 letter iso code
+	'address1'             => '155 West 51st Street',
     'address2'             => '',
-    'region'               => 'NY' // State or Region
-    'city'                 => 'New York',
-    'postcode'             => '10019',
+	'region'               => 'NY' // State or Region
+	'city'                 => 'New York',
+	'postcode'             => '10019',
     'telephone'            => '+1 212-554-1515'
 ]);
 print_r($success);
@@ -31,16 +31,16 @@ curl -X POST \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'name=<INSERT_BUSINESS_NAME>' \
- -d 'url=<INSERT_COMPANY_URL>'\
- -d 'business-category-id=<INSERT_BUSINESS_CATEGORY_ID>'\ 
- -d 'country=<INSERT_THREE_LETTER_COUNTRY_CODE>'\
- -d 'address1=<INSERT_ADDRESS_LINE_ONE>'\
- -d 'address1=<INSERT_ADDRESS_LINE_TWO>'\
- -d 'region=<INSERT_STATE_OR_REGION>'\
- -d 'city=<INSERT_CITY>'\
- -d 'postcode=<INSERT_POSTAL_CODE>'\
- -d 'telephone=<INSERT_TELEPHONE_NUMBER>'\
+ -d 'name=Le Bernardin' \
+ -d 'url=le-bernardin.com' \
+ -d 'business-category-id=605' \ 
+ -d 'country=USA' \
+ -d 'address1=155 West 51st Street' \
+ -d 'address1=' \
+ -d 'region=NY' \
+ -d 'city=New York' \
+ -d 'postcode=10019' \
+ -d 'telephone=+1 212-554-1515' \
  https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/
 ```
 
@@ -109,14 +109,14 @@ $locationId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->put('v1/clients-and-locations/locations/' .$locationId, [
     'name'                 => 'Le Bernardin',    
-    'url'                  => 'http://www.example.com',
-    'business-category-id' =>  605,
-    'country'              => 'USA', // 3 letter iso code
-    'address1'             => '155 West 51st Street',
+    'url'                  => 'le-bernardin.com',
+	'business-category-id' =>  605,
+	'country'              => 'USA', // 3 letter iso code
+	'address1'             => '155 West 51st Street',
     'address2'             => '',
-    'region'               => 'NY', // State or Region
-    'city'                 => 'New York',
-    'postcode'             => '10019',
+	'region'               => 'NY', // State or Region
+	'city'                 => 'New York',
+	'postcode'             => '10019',
     'telephone'            => '+1 212-554-1515'
 ]);
 print_r($success);
@@ -128,7 +128,7 @@ curl -X PUT \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
  -d 'name=Le Bernardin' \
- -d 'url=http://www.example.com' \
+ -d 'url=le-bernardin.com' \
  -d 'business-category-id=605' \ 
  -d 'country=USA' \
  -d 'address1=155 West 51st Street' \
@@ -151,7 +151,7 @@ curl -X PUT \
 
 ### HTTP Request
 
-`PUT https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/:locationId`
+`PUT https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/<locationId>`
 
 ### Query Parameters
 
@@ -199,8 +199,8 @@ use BrightLocal\Api;
 
 $locationId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->delete('v1/clients-and-locations/locations/' .$locationId);
-if($success) {
+$result = $api->delete('v1/clients-and-locations/locations/' . $locationId);
+if (!empty($result['success'])) {
     echo 'Successfully deleted location.' . PHP_EOL;
 }
 ```
@@ -217,7 +217,7 @@ Delete an existing location. If there are reports associated with this location 
 
 ### HTTP Request
 
-`DELETE https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/:locationId`
+`DELETE https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/<locationId>`
 
 ### Query Parameters
 
@@ -240,7 +240,7 @@ use BrightLocal\Api;
 
 $locationId = 1;
 $api = new Api(<INSERT_API_KEY>', '<INSERT_API_SECRET>);
-$location = $api->get('v1/clients-and-locations/locations/' .$locationId);
+$location = $api->get('v1/clients-and-locations/locations/' . $locationId);
 print_r($location);
 ```
 
@@ -293,7 +293,7 @@ Get extended details for a specific location.
 
 ### HTTP Request
 
-`GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/:locationId`
+`GET https://tools.brightlocal.com/seo-tools/api/v1/clients-and-locations/locations/<locationId>`
 
 ### Query Parameters
 
@@ -315,7 +315,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $results = $api->call('v1/clients-and-locations/locations/search', [
-    'q' => 'My Sample Query'    
+    'q' => 'BrightLocal'    
 ]);
 print_r($results);
 ```

@@ -13,18 +13,18 @@ use BrightLocal\Api;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('v4/lscu', [
     'report-name'				=> 'Sample SEO Check-Up Report', 
-    'business-names'			=> ["Le Bernardin"],
-    'website-addresses'			=> ["http://www.example.com","http://www.example2.com"],
-    'address1'                  => '155 West 51st Street',
+	'business-names'			=> ["Le Bernardin"],
+	'website-address'			=> "le-bernardin.com",
+	'address1'                  => '155 West 51st Street',
     'address2'                  => '',      
     'city'                      => 'New York',
-    'state-code'				=> 'NY',
-    'postcode'					=> '10019',	
-    'telephone'					=> '+1 212-554-1515',
-    'country'					=> 'USA',
-    'business-category'         => 'Restaurant',
-    'primary-business-location' => 'NY, New York',
-    'search-terms'              => '["restaurant manhattan","cafe new york"]'
+	'state-code'				=> 'NY',
+	'postcode'					=> '10019',	
+	'telephone'					=> '+1 212-554-1515',
+	'country'					=> 'USA',
+	'business-category'         => 'Restaurant',
+	'primary-business-location' => 'NY, New York',
+	'search-terms'              => ["restaurant manhattan","cafe new york"]
 ]);
 print_r($success);
 ```
@@ -151,7 +151,8 @@ run-report | One of yes or no. Runs the report after adding. Defaults to no.
 use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
-$success = $api->put('v4/lscu', [   
+$success = $api->put('v4/lscu', [
+	'report-id'                 => '1',
 	'postcode'                  => '10019',	
 	'telephone'                 => '+1 212-554-1515',
 	'country'                   => 'USA',
@@ -238,7 +239,7 @@ Parameter | Notes
 api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
-report-id |
+report-id | <span class="label label-required">Required</span>
 report-name |
 location-id | Associate this report with a location in your account. This ID needs to correspond to a valid location in your account.
 white-label-profile-id | Assign a white label profile to this report. The ID needs to correspond to a valid white label profile in your account.
@@ -331,10 +332,10 @@ curl -X GET \
     "is_public": "Yes",
     "public_key": "<hidden>",
     "latest_run":  {
-      "interactive_url": "https://dev-tools.brightlocal.com/seo-tools/admin/lscu/reports/view/858/2171",
-      "pdf_url": "https://dev-tools.brightlocal.com/seo-tools/admin/lscu/reports/pdf/858",
-      "public_interactive_url": "http://dev-tools.local-marketing-reports.com/seo-reports/<hidden>/858",
-      "public_pdf_url": "http://dev-tools.local-marketing-reports.com/seo-reports/<hidden>/858.pdf"
+      "interactive_url": "https://tools.brightlocal.com/seo-tools/admin/lscu/reports/view/858/2171",
+      "pdf_url": "https://tools.brightlocal.com/seo-tools/admin/lscu/reports/pdf/858",
+      "public_interactive_url": "http://www.local-marketing-reports.com/seo-reports/<hidden>/858",
+      "public_pdf_url": "http://www.local-marketing-reports.com/seo-reports/<hidden>/858.pdf"
     }
   }
 }
@@ -518,7 +519,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $results = $api->get('v4/lscu/search', [
-    'q' => 'My Sample Query'	 
+    'q' => 'Bodega Wine Bar'	 
 ]);
 print_r($results);
 ```
@@ -528,7 +529,7 @@ curl -X GET \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \
- -d 'q=My+Sample+Query' \	
+ -d 'q=Bodega+Wine+Bar' \	
   https://tools.brightlocal.com/seo-tools/api/v4/lscu/search
 ```
 
